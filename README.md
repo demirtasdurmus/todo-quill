@@ -1,5 +1,9 @@
 # Todo Quill
 
+<div align="center">
+  <img src="./assets/todo-quill.gif" alt="Todo Quill Demo" />
+</div>
+
 A modern, feature-rich todo application built with React Native and Expo, featuring a comprehensive design system with dark mode support and file-based navigation using Expo Router.
 
 ## ✨ Features
