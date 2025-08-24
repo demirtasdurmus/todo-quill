@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useMemo, useState } from "react";
 import { useColorScheme } from "react-native";
 import { themes } from "../theme/colors";
 import { spacing, borderRadius } from "../theme/spacing";
@@ -31,7 +31,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   const systemColorScheme = useColorScheme();
   const [themeMode, setThemeMode] = useState<ThemeMode>("system");
 
-  const getCurrentTheme = (): Theme => {
+  const theme = useMemo((): Theme => {
     const colorTheme =
       themeMode === "system"
         ? systemColorScheme === "dark"
@@ -48,9 +48,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       typography,
       shadows,
     };
-  };
-
-  const theme = getCurrentTheme();
+  }, [themeMode, systemColorScheme]);
 
   return (
     <ThemeContext.Provider value={{ theme, themeMode, setThemeMode }}>

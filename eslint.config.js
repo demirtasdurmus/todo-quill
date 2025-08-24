@@ -19,7 +19,22 @@ export default [
         ecmaVersion: "latest",
         sourceType: "module",
       },
+      globals: {
+        // Add React Native globals
+        console: "readonly",
+        __DEV__: "readonly",
+        global: "readonly",
+        process: "readonly",
+        Buffer: "readonly",
+        setImmediate: "readonly",
+        clearImmediate: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+      },
     },
+    
     plugins: {
       "@typescript-eslint": typescript,
       react: react,
@@ -35,6 +50,7 @@ export default [
           "caughtErrorsIgnorePattern": "^_"
         }
       ],
+      "no-console": "error",
       "prettier/prettier": "error",
     },
     settings: {
