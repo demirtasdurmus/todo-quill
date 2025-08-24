@@ -1,29 +1,24 @@
-import React, { useEffect, useMemo, useState } from "react";
-import {
-  Alert,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import {
-  createTodo,
-  Filter,
-  loadTodos,
-  saveTodos,
-  TTodo,
-} from "../services/storage";
-import { TodoItem } from "../components/TodoItem";
-import { Button } from "../components/Button";
+import React, { useMemo } from "react";
+import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import { TodoItem } from "./TodoItem";
+import { Button } from "./Button";
 import { useTheme } from "../hooks/use-theme";
 import { useThemedStyles } from "../hooks/use-themed-styles";
+import { useTodoReducer } from "../hooks/useTodoReducer";
 
 export const Todo: React.FC = () => {
   const { theme } = useTheme();
-  const [todos, setTodos] = useState<TTodo[]>([]);
-  const [text, setText] = useState("");
-  const [filter, setFilter] = useState<Filter>("all");
+  const {
+    todos,
+    text,
+    filter,
+    handleAddTodo,
+    handleToggleDone,
+    handleRemoveTodo,
+    handleClearDone,
+    setText,
+    setFilter,
+  } = useTodoReducer();
 
   const remaining = useMemo(() => todos.filter((t) => !t.done).length, [todos]);
   const filtered = useMemo(() => {
@@ -52,12 +47,12 @@ export const Todo: React.FC = () => {
         },
         input: {
           flex: 1,
-          fontSize: theme.typography.sizes.base,
+          fontSize: theme.typography.sizes["xl"],
           paddingVertical: theme.spacing.xs,
           color: theme.colors.text.primary,
         },
         filters: {
-          marginTop: theme.spacing.sm,
+          marginTop: theme.spacing.md,
           flexDirection: "row",
           alignItems: "center",
           gap: theme.spacing.xs,
@@ -71,6 +66,9 @@ export const Todo: React.FC = () => {
           fontSize: theme.typography.sizes.sm,
           color: theme.colors.error,
         },
+        contentContainer: {
+          paddingTop: theme.spacing.lg,
+        },
         empty: {
           textAlign: "center",
           marginTop: theme.spacing.xl,
@@ -79,52 +77,6 @@ export const Todo: React.FC = () => {
       }),
     theme
   );
-
-  const handleAddTodo = () => {
-    const title = text.trim();
-    if (!title) return;
-    setTodos((prev) => [createTodo(title), ...prev]);
-    setText("");
-  };
-
-  const handleToggleDone = (id: string) => {
-    setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-    );
-  };
-
-  const handleRemoveTodo = (id: string) => {
-    const t = todos.find((x) => x.id === id);
-    if (!t) return;
-    Alert.alert("Delete todo", `Delete "${t.title}"?`, [
-      { text: "Cancel", style: "cancel" },
-      {
-        text: "Delete",
-        style: "destructive",
-        onPress: () => setTodos((prev) => prev.filter((x) => x.id !== id)),
-      },
-    ]);
-  };
-
-  const handleClearDone = () => {
-    if (!todos.some((t) => t.done)) return;
-    Alert.alert("Clear completed", "Remove all completed todos?", [
-      { text: "Cancel", style: "cancel" },
-      {
-        text: "Remove",
-        style: "destructive",
-        onPress: () => setTodos((prev) => prev.filter((t) => !t.done)),
-      },
-    ]);
-  };
-
-  useEffect(() => {
-    (async () => setTodos(await loadTodos()))();
-  }, []);
-
-  useEffect(() => {
-    saveTodos(todos);
-  }, [todos]);
 
   return (
     <View>
@@ -166,7 +118,7 @@ export const Todo: React.FC = () => {
       <FlatList
         data={filtered}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{ paddingTop: 6, paddingBottom: 24 }}
+        contentContainerStyle={styles.contentContainer}
         renderItem={({ item }) => (
           <TodoItem
             item={item}

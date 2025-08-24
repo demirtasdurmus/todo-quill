@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Checkbox from "expo-checkbox";
-import { TTodo } from "../services/storage";
+import { Todo } from "../services/storage";
 import { useTheme, useThemedStyles } from "../hooks";
 
 type TodoItemProps = {
-  item: TTodo;
+  item: Todo;
   onToggle(_id: string): void;
   onDelete(_id: string): void;
 };

@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type Filter = "all" | "active" | "done";
 
-export type TTodo = {
+export type Todo = {
   id: string;
   title: string;
   done: boolean;
@@ -11,7 +11,7 @@ export type TTodo = {
 
 const KEY = "todos:v1";
 
-export async function loadTodos(): Promise<TTodo[]> {
+export async function loadTodos(): Promise<Todo[]> {
   try {
     const raw = await AsyncStorage.getItem(KEY);
     if (!raw) return [];
@@ -22,7 +22,7 @@ export async function loadTodos(): Promise<TTodo[]> {
           typeof t?.id === "string" &&
           typeof t?.title === "string" &&
           typeof t?.done === "boolean"
-      ) as TTodo[];
+      ) as Todo[];
     }
     return [];
   } catch {
@@ -30,7 +30,7 @@ export async function loadTodos(): Promise<TTodo[]> {
   }
 }
 
-export async function saveTodos(todos: TTodo[]): Promise<void> {
+export async function saveTodos(todos: Todo[]): Promise<void> {
   try {
     await AsyncStorage.setItem(KEY, JSON.stringify(todos));
   } catch {
@@ -38,7 +38,7 @@ export async function saveTodos(todos: TTodo[]): Promise<void> {
   }
 }
 
-export function createTodo(title: string): TTodo {
+export function createTodo(title: string): Todo {
   return {
     id: Math.random().toString(36).slice(2),
     title: title.trim(),
