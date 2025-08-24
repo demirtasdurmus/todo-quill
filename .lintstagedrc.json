@@ -1,0 +1,5 @@
+{
+  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "**/*.ts?(x)": ["bash -c tsc -p tsconfig.json --noEmit"],
+  "*.{json,yaml}": ["prettier --write"]
+}
