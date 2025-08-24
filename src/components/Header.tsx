@@ -18,8 +18,7 @@ export const Header: React.FC<HeaderProps> = ({ onProfilePress }) => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingTop: theme.spacing.sm,
-          paddingBottom: theme.spacing.md,
+          paddingVertical: theme.spacing.md,
         },
         leftSection: {
           flexDirection: "row",
