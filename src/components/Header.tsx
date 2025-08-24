@@ -24,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({ onProfilePress }) => {
         leftSection: {
           flexDirection: "row",
           alignItems: "center",
+          gap: theme.spacing.sm,
         },
         appName: {
           fontSize: theme.typography.sizes["2xl"],
@@ -37,13 +38,13 @@ export const Header: React.FC<HeaderProps> = ({ onProfilePress }) => {
         profileButton: {
           width: 32,
           height: 32,
-          borderRadius: 16,
+          borderRadius: theme.borderRadius.full,
           overflow: "hidden",
         },
         iconImage: {
           width: 32,
           height: 32,
-          borderRadius: 16,
+          borderRadius: theme.borderRadius.full,
         },
       }),
     theme

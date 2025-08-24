@@ -70,7 +70,7 @@ export const ThemeToggle: React.FC = () => {
         radioButton: {
           width: 20,
           height: 20,
-          borderRadius: 10,
+          borderRadius: theme.borderRadius.full,
           borderWidth: 2,
           borderColor: theme.colors.primary,
           alignItems: "center",
@@ -82,7 +82,7 @@ export const ThemeToggle: React.FC = () => {
         radioButtonInner: {
           width: 8,
           height: 8,
-          borderRadius: 4,
+          borderRadius: theme.borderRadius.sm,
           backgroundColor: theme.colors.surface,
         },
         description: {

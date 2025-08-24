@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
 import { useTheme, useThemedStyles } from "../hooks";
 
 type ButtonProps = {
@@ -18,25 +18,40 @@ export const Button: React.FC<ButtonProps> = ({ label, active, onPress }) => {
           paddingHorizontal: theme.spacing.md,
           paddingVertical: theme.spacing.xs,
           borderRadius: theme.borderRadius.full,
-          fontSize: theme.typography.sizes.sm,
-          color: theme.colors.text.secondary,
+          alignItems: "center",
+          justifyContent: "center",
         },
         filterActive: {
           backgroundColor: theme.colors.primary,
+        },
+        filterText: {
+          fontSize: theme.typography.sizes.sm,
+          color: theme.colors.text.secondary,
+        },
+        filterTextActive: {
           color: theme.colors.text.inverse,
+        },
+        pressed: {
+          opacity: 0.7,
         },
       }),
     theme
   );
 
   return (
-    <Text
+    <Pressable
       onPress={onPress}
-      style={[styles.filterBtn, active && styles.filterActive]}
+      style={({ pressed }) => [
+        styles.filterBtn,
+        active && styles.filterActive,
+        pressed && styles.pressed,
+      ]}
       accessibilityRole="button"
       accessibilityState={{ selected: active }}
     >
-      {label}
-    </Text>
+      <Text style={[styles.filterText, active && styles.filterTextActive]}>
+        {label}
+      </Text>
+    </Pressable>
   );
 };
