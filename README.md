@@ -2,7 +2,7 @@
 
 <!-- markdownlint-disable MD033 -->
 <div align="center">
-  <img src="./assets/todo-quill.gif" alt="Todo Quill Demo" />
+  <img src="./assets/demo.gif" alt="Todo Quill Demo" />
 </div>
 <!-- markdownlint-enable MD033 -->
 
