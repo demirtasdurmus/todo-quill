@@ -22,8 +22,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
         row: {
           flexDirection: "row",
           alignItems: "center",
-          paddingVertical: theme.spacing.sm,
-          paddingHorizontal: theme.spacing.sm,
+          padding: theme.spacing.md,
           backgroundColor: theme.colors.surface,
           borderRadius: theme.borderRadius.lg,
           marginBottom: theme.spacing.sm,

@@ -79,7 +79,7 @@ export const Todo: React.FC = () => {
   );
 
   return (
-    <View>
+    <>
       <View style={styles.inputRow}>
         <TextInput
           value={text}
@@ -130,7 +130,8 @@ export const Todo: React.FC = () => {
           <Text style={styles.empty}>No todos. Add one above!</Text>
         }
         keyboardShouldPersistTaps="handled"
+        scrollEnabled={true}
       />
-    </View>
+    </>
   );
 };
