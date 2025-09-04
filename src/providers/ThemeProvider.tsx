@@ -1,9 +1,10 @@
-import React, { createContext, useMemo, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import { useColorScheme } from "react-native";
 import { themes } from "../theme/colors";
 import { spacing, borderRadius } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { shadows } from "../theme/shadows";
+import { loadThemeMode, saveThemeMode } from "../services/storage";
 
 export type ThemeMode = "light" | "dark" | "system";
 
@@ -30,6 +31,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const systemColorScheme = useColorScheme();
   const [themeMode, setThemeMode] = useState<ThemeMode>("system");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const theme = useMemo((): Theme => {
     const colorTheme =
@@ -49,6 +51,19 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       shadows,
     };
   }, [themeMode, systemColorScheme]);
+
+  useEffect(() => {
+    loadThemeMode().then((savedThemeMode) => {
+      setThemeMode(savedThemeMode);
+      setIsLoaded(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      saveThemeMode(themeMode);
+    }
+  }, [themeMode, isLoaded]);
 
   return (
     <ThemeContext.Provider value={{ theme, themeMode, setThemeMode }}>

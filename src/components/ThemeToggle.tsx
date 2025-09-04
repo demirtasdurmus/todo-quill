@@ -4,8 +4,7 @@ import { useTheme } from "../hooks/use-theme";
 import { useThemedStyles } from "../hooks/use-themed-styles";
 import { Ionicons } from "@expo/vector-icons";
 import { ThemeMode } from "../providers/ThemeProvider";
-
-const themeModes: ThemeMode[] = ["system", "light", "dark"];
+import { THEME_MODES } from "../services/storage";
 
 const getThemeIcon = (mode: ThemeMode) => {
   switch (mode) {
@@ -101,7 +100,7 @@ export const ThemeToggle: React.FC = () => {
       <Text style={styles.sectionTitle}>Theme</Text>
 
       <View style={styles.card}>
-        {themeModes.map((mode, index) => (
+        {THEME_MODES.map((mode, index) => (
           <TouchableOpacity
             key={mode}
             style={[styles.option, index === 2 && styles.optionLast]}

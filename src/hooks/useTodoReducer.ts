@@ -1,12 +1,7 @@
 import { useReducer, useEffect } from "react";
 import { Alert } from "react-native";
-import {
-  createTodo,
-  Filter,
-  loadTodos,
-  saveTodos,
-  Todo,
-} from "../services/storage";
+import { Filter, loadTodos, saveTodos } from "../services/storage";
+import { createTodo, Todo } from "../utils";
 
 type TodoState = {
   todos: Todo[];
