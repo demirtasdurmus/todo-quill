@@ -20,6 +20,7 @@ export type ThemeContextType = {
   theme: Theme;
   themeMode: ThemeMode;
   setThemeMode: (_mode: ThemeMode) => void;
+  isLoaded: boolean;
 };
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(
@@ -66,7 +67,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [themeMode, isLoaded]);
 
   return (
-    <ThemeContext.Provider value={{ theme, themeMode, setThemeMode }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        themeMode,
+        setThemeMode,
+        isLoaded,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );
