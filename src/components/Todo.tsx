@@ -34,25 +34,7 @@ export const Todo: React.FC = () => {
   const styles = useThemedStyles(
     (theme) =>
       StyleSheet.create({
-        inputRow: {
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: theme.colors.surface,
-          borderRadius: theme.borderRadius.lg,
-          paddingHorizontal: theme.spacing.sm,
-          paddingVertical: theme.spacing.xs,
-          borderWidth: 1,
-          borderColor: theme.colors.border,
-          ...theme.shadows.sm,
-        },
-        input: {
-          flex: 1,
-          fontSize: theme.typography.sizes["xl"],
-          paddingVertical: theme.spacing.xs,
-          color: theme.colors.text.primary,
-        },
         filters: {
-          marginTop: theme.spacing.md,
           flexDirection: "row",
           alignItems: "center",
           gap: theme.spacing.xs,
@@ -65,6 +47,24 @@ export const Todo: React.FC = () => {
         clear: {
           fontSize: theme.typography.sizes.sm,
           color: theme.colors.error,
+        },
+        inputRow: {
+          flexDirection: "row",
+          alignItems: "center",
+          backgroundColor: theme.colors.surface,
+          borderRadius: theme.borderRadius.lg,
+          paddingHorizontal: theme.spacing.sm,
+          paddingVertical: theme.spacing.xs,
+          borderWidth: 1,
+          marginTop: theme.spacing.md,
+          borderColor: theme.colors.border,
+          ...theme.shadows.sm,
+        },
+        input: {
+          flex: 1,
+          fontSize: theme.typography.sizes["xl"],
+          paddingVertical: theme.spacing.xs,
+          color: theme.colors.text.primary,
         },
         contentContainer: {
           paddingTop: theme.spacing.lg,
@@ -80,18 +80,6 @@ export const Todo: React.FC = () => {
 
   return (
     <>
-      <View style={styles.inputRow}>
-        <TextInput
-          value={text}
-          onChangeText={setText}
-          placeholder="Add a todo…"
-          placeholderTextColor={theme.colors.text.secondary}
-          returnKeyType="done"
-          onSubmitEditing={handleAddTodo}
-          style={styles.input}
-        />
-      </View>
-
       <View style={styles.filters}>
         <Button
           label="All"
@@ -109,10 +97,24 @@ export const Todo: React.FC = () => {
           onPress={() => setFilter("done")}
         />
         <View style={{ flex: 1 }} />
+
         <Text style={styles.meta}>{remaining} left</Text>
+
         <Text style={styles.clear} onPress={handleClearDone}>
           Clear done
         </Text>
+      </View>
+
+      <View style={styles.inputRow}>
+        <TextInput
+          value={text}
+          onChangeText={setText}
+          placeholder="Add a todo…"
+          placeholderTextColor={theme.colors.text.secondary}
+          returnKeyType="done"
+          onSubmitEditing={handleAddTodo}
+          style={styles.input}
+        />
       </View>
 
       <FlatList
