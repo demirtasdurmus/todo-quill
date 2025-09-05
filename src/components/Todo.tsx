@@ -51,10 +51,11 @@ export const Todo: React.FC = () => {
         inputRow: {
           flexDirection: "row",
           alignItems: "center",
-          backgroundColor: theme.colors.surface,
+          backgroundColor: theme.colors.border,
           borderRadius: theme.borderRadius.lg,
           paddingHorizontal: theme.spacing.sm,
           paddingVertical: theme.spacing.xs,
+          marginBottom: theme.spacing.sm,
           borderWidth: 1,
           marginTop: theme.spacing.md,
           borderColor: theme.colors.border,
@@ -67,7 +68,7 @@ export const Todo: React.FC = () => {
           color: theme.colors.text.primary,
         },
         contentContainer: {
-          paddingTop: theme.spacing.lg,
+          paddingTop: theme.spacing.sm,
         },
         empty: {
           textAlign: "center",
