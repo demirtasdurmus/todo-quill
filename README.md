@@ -6,18 +6,20 @@
 </div>
 <!-- markdownlint-enable MD033 -->
 
-A modern, feature-rich todo application built with React Native and Expo, featuring a comprehensive design system with dark mode support and file-based navigation using Expo Router.
+A modern, feature-rich todo application built with React Native and Expo, featuring a comprehensive design system with dark mode support, internationalization, and file-based navigation using Expo Router.
 
 ## ✨ Features
 
 - **📝 Task Management**: Create, complete, and delete todos
 - **🔍 Filtering**: Filter todos by All, Active, or Done status
 - **🎨 Theme System**: Light, dark, and system theme support
-- **⚙️ Settings Screen**: Dedicated settings page with theme controls
+- **🌍 Internationalization**: English and Turkish language support with device detection
+- **⚙️ Settings Screen**: Dedicated settings page with theme and language controls
 - **🧭 File-based Navigation**: Modern routing with Expo Router
-- **💾 Persistent Storage**: Todos are saved locally using AsyncStorage
+- **💾 Persistent Storage**: Todos, theme, and language preferences saved locally
 - **📱 Cross-Platform**: Works on iOS, Android, and Web
-- **🎯 Type Safety**: Full TypeScript support
+- **🎯 Type Safety**: Full TypeScript support with nested translation keys
+- **🧩 Modular Components**: Reusable UI components with granular architecture
 - **🔧 Code Quality**: ESLint, Prettier, and Husky pre-commit hooks
 
 ## 🚀 Quick Start
@@ -128,19 +130,34 @@ spacing: {
 
 ```sh
 app/                   # Expo Router file-based navigation
-├── _layout.tsx        # Root layout with theme provider
+├── _layout.tsx        # Root layout with providers
 └── (tabs)/            # Tab navigation group
     ├── _layout.tsx    # Tab layout configuration
     ├── index.tsx      # Todo screen (home route)
     └── settings.tsx   # Settings screen
 
-src/
-├── components/          # Reusable UI components
-├── layouts/            # Layout components
-├── providers/          # Context providers
-├── services/           # Business logic and API calls
-├── hooks/              # Custom hooks
-└── theme/              # Design system
+
+components/          # Feature components
+├── ui/             # Reusable UI components
+│   ├── RadioButton.tsx
+│   ├── OptionItem.tsx
+│   ├── OptionList.tsx
+│   └── SettingsSection.tsx
+├── LanguageToggle.tsx
+├── ThemeToggle.tsx
+└── Todo.tsx
+i18n/               # Internationalization
+├── en.json         # English translations
+├── tr.json         # Turkish translations
+└── index.ts        # i18n configuration
+layouts/            # Layout components
+providers/          # Context providers
+├── ThemeProvider.tsx
+└── LanguageProvider.tsx
+services/           # Business logic and storage
+hooks/              # Custom hooks
+theme/              # Design system
+utils/              # Utility functions and types
 ```
 
 ## 🧭 Navigation
@@ -230,6 +247,52 @@ const MyComponent = () => {
 };
 ```
 
+### Internationalization Usage
+
+```typescript
+import { useLanguage } from '../src/hooks';
+
+const MyComponent = () => {
+  const { t } = useLanguage();
+
+  return (
+    <View>
+      {/* Basic translation */}
+      <Text>{t("Common.add")}</Text>
+
+      {/* Translation with interpolation */}
+      <Text>{t("Todo.itemsLeft", { count: 5 })}</Text>
+
+      {/* Nested translation keys */}
+      <Text>{t("Settings.theme")}</Text>
+    </View>
+  );
+};
+```
+
+### Component Architecture
+
+The app uses a granular component architecture for maximum reusability:
+
+```typescript
+// Reusable UI components
+import { RadioButton, OptionList, SettingsSection } from '../components/ui';
+
+// Feature components
+import { LanguageToggle, ThemeToggle } from '../components';
+
+// Usage example
+const CustomToggle = () => (
+  <SettingsSection title="Custom Setting" description="Choose your preference">
+    <OptionList
+      options={customOptions}
+      selectedValue={selectedValue}
+      onSelect={setSelectedValue}
+    />
+  </SettingsSection>
+);
+```
+
 ## Features in Detail
 
 ### Todo Management
@@ -253,6 +316,16 @@ const MyComponent = () => {
 - **System Integration**: Automatic theme follows device settings
 - **Persistent Settings**: Theme preferences are saved locally
 
+### Internationalization
+
+- **Multi-language Support**: English and Turkish language support
+- **Device Detection**: Automatically detects device language on first launch
+- **Persistent Language**: User language preference is saved locally
+- **Type-safe Translations**: Full TypeScript support for translation keys
+- **Nested Translation Keys**: Organized translation structure with dot notation
+- **Interpolation Support**: Dynamic values in translations (e.g., `{{count}} items left`)
+- **Pluralization**: Proper plural forms for different languages
+
 ## Configuration
 
 ### Environment Setup
@@ -264,6 +337,8 @@ The app uses Expo SDK 53 with the following key dependencies:
 - **Expo Router**: File-based navigation
 - **TypeScript**: 5.8.3
 - **AsyncStorage**: For local data persistence
+- **i18n-js**: For internationalization
+- **expo-localization**: For device language detection
 
 ### Theme Configuration
 
@@ -317,8 +392,12 @@ expo publish
 - Write TypeScript for all new code
 - Use the design system for styling
 - Test on both light and dark themes
+- Test in both English and Turkish languages
+- Use the granular component architecture for new UI elements
 - Ensure accessibility features are maintained
 - Follow Expo Router conventions for new screens
+- Add translations for all user-facing text
+- Use type-safe translation keys with nested dot notation
 
 ## 📄 License
 
@@ -331,6 +410,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Icons from [Expo Vector Icons](https://docs.expo.dev/guides/icons/)
 - Checkbox component from [expo-checkbox](https://docs.expo.dev/versions/latest/sdk/checkbox/)
 - Storage solution using [@react-native-async-storage/async-storage](https://github.com/react-native-async-storage/async-storage)
+- Internationalization with [i18n-js](https://github.com/fnando/i18n-js)
+- Device localization with [expo-localization](https://docs.expo.dev/versions/latest/sdk/localization/)
 
 ---
 
