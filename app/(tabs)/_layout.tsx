@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "../../src/hooks/use-theme";
-import { useLanguage } from "../../src/hooks/use-language";
+import { useTheme } from "../../hooks/use-theme";
+import { useLanguage } from "../../hooks/use-language";
 
 export default function TabLayout() {
   const { theme } = useTheme();
