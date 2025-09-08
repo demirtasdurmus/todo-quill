@@ -4,25 +4,35 @@ import { useTheme } from "../hooks/use-theme";
 import { useThemedStyles } from "../hooks/use-themed-styles";
 import { useLanguage } from "../hooks/use-language";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemeMode } from "../providers/ThemeProvider";
-import { THEME_MODES } from "../services/storage";
+import { Language } from "../services/storage";
+import { SUPPORTED_LANGUAGES } from "../services/storage";
+import { TranslationFunction } from "../i18n";
 
-const getThemeIcon = (mode: ThemeMode) => {
-  switch (mode) {
-    case "system":
-      return "contrast";
-    case "light":
-      return "sunny";
-    case "dark":
-      return "moon";
+const getLanguageIcon = (language: Language) => {
+  switch (language) {
+    case "en":
+      return "language";
+    case "tr":
+      return "flag";
     default:
-      return "contrast";
+      return "language";
   }
 };
 
-export const ThemeToggle: React.FC = () => {
-  const { theme, themeMode, setThemeMode } = useTheme();
-  const { t } = useLanguage();
+const getLanguageName = (language: Language, t: TranslationFunction) => {
+  switch (language) {
+    case "en":
+      return t("Language.english");
+    case "tr":
+      return t("Language.turkish");
+    default:
+      return t("Language.english");
+  }
+};
+
+export const LanguageToggle: React.FC = () => {
+  const { theme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
   const styles = useThemedStyles(
     (theme) =>
       StyleSheet.create({
@@ -63,7 +73,6 @@ export const ThemeToggle: React.FC = () => {
           alignItems: "center",
         },
         optionText: {
-          textTransform: "capitalize",
           fontSize: theme.typography.sizes.base,
           color: theme.colors.text.primary,
           flex: 1,
@@ -99,38 +108,43 @@ export const ThemeToggle: React.FC = () => {
 
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionTitle}>{t("Settings.theme")}</Text>
+      <Text style={styles.sectionTitle}>{t("Settings.language")}</Text>
 
       <View style={styles.card}>
-        {THEME_MODES.map((mode, index) => (
+        {SUPPORTED_LANGUAGES.map((lang, index) => (
           <TouchableOpacity
-            key={mode}
-            style={[styles.option, index === 2 && styles.optionLast]}
-            onPress={() => setThemeMode(mode)}
+            key={lang}
+            style={[
+              styles.option,
+              index === SUPPORTED_LANGUAGES.length - 1 && styles.optionLast,
+            ]}
+            onPress={() => setLanguage(lang)}
           >
             <View style={styles.optionContent}>
               <View style={styles.optionIcon}>
                 <Ionicons
-                  name={getThemeIcon(mode)}
+                  name={getLanguageIcon(lang)}
                   size={20}
                   color={theme.colors.text.primary}
                 />
               </View>
-              <Text style={styles.optionText}>{t(`Theme.${mode}`)}</Text>
+              <Text style={styles.optionText}>{getLanguageName(lang, t)}</Text>
             </View>
             <View
               style={[
                 styles.radioButton,
-                themeMode === mode && styles.radioButtonSelected,
+                language === lang && styles.radioButtonSelected,
               ]}
             >
-              {themeMode === mode && <View style={styles.radioButtonInner} />}
+              {language === lang && <View style={styles.radioButtonInner} />}
             </View>
           </TouchableOpacity>
         ))}
       </View>
 
-      <Text style={styles.description}>{t("Settings.themeDescription")}</Text>
+      <Text style={styles.description}>
+        {t("Settings.languageDescription")}
+      </Text>
     </View>
   );
 };

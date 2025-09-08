@@ -1,0 +1,46 @@
+{
+  "Common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "done": "Done",
+    "all": "All",
+    "active": "Active",
+    "itemsLeft": {
+      "zero": "No items left",
+      "one": "{{count}} item left",
+      "other": "{{count}} items left"
+    },
+    "clearDone": "Clear done",
+    "removeAllDoneTodos": "Remove all done todos"
+  },
+
+  "Navigation": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+
+  "Todo": {
+    "addTodo": "Add Todo",
+    "deleteTodo": "Delete Todo",
+    "noTodos": "No todos yet",
+    "noTodosDescription": "Add your first todo to get started"
+  },
+
+  "Settings": {
+    "theme": "Theme",
+    "language": "Language",
+    "themeDescription": "Automatic is only supported on operating systems that allow you to control the system-wide color scheme.",
+    "languageDescription": "Choose your preferred language for the app interface."
+  },
+
+  "Theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+
+  "Language": {
+    "english": "English",
+    "turkish": "Türkçe"
+  }
+}

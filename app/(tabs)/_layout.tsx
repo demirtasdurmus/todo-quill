@@ -1,9 +1,11 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../src/hooks/use-theme";
+import { useLanguage } from "../../src/hooks/use-language";
 
 export default function TabLayout() {
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
   return (
     <Tabs
@@ -20,7 +22,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: t("Navigation.home"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -29,7 +31,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
+          title: t("Navigation.settings"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings" size={size} color={color} />
           ),

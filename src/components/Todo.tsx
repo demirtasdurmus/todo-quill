@@ -4,10 +4,12 @@ import { TodoItem } from "./TodoItem";
 import { Button } from "./Button";
 import { useTheme } from "../hooks/use-theme";
 import { useThemedStyles } from "../hooks/use-themed-styles";
-import { useTodoReducer } from "../hooks/useTodoReducer";
+import { useTodoReducer } from "../hooks";
+import { useLanguage } from "../hooks";
 
 export const Todo: React.FC = () => {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const {
     todos,
     text,
@@ -18,7 +20,7 @@ export const Todo: React.FC = () => {
     handleClearDone,
     setText,
     setFilter,
-  } = useTodoReducer();
+  } = useTodoReducer(t);
 
   const remaining = useMemo(() => todos.filter((t) => !t.done).length, [todos]);
   const filtered = useMemo(() => {
@@ -83,26 +85,28 @@ export const Todo: React.FC = () => {
     <>
       <View style={styles.filters}>
         <Button
-          label="All"
+          label={t("Common.all")}
           active={filter === "all"}
           onPress={() => setFilter("all")}
         />
         <Button
-          label="Active"
+          label={t("Common.active")}
           active={filter === "active"}
           onPress={() => setFilter("active")}
         />
         <Button
-          label="Done"
+          label={t("Common.done")}
           active={filter === "done"}
           onPress={() => setFilter("done")}
         />
         <View style={{ flex: 1 }} />
 
-        <Text style={styles.meta}>{remaining} left</Text>
+        <Text style={styles.meta}>
+          {t("Common.itemsLeft", { count: remaining })}
+        </Text>
 
         <Text style={styles.clear} onPress={handleClearDone}>
-          Clear done
+          {t("Common.clearDone")}
         </Text>
       </View>
 
@@ -110,7 +114,7 @@ export const Todo: React.FC = () => {
         <TextInput
           value={text}
           onChangeText={setText}
-          placeholder="Add a todo…"
+          placeholder={t("Todo.addTodo")}
           placeholderTextColor={theme.colors.text.secondary}
           returnKeyType="done"
           onSubmitEditing={handleAddTodo}
@@ -130,7 +134,10 @@ export const Todo: React.FC = () => {
           />
         )}
         ListEmptyComponent={
-          <Text style={styles.empty}>No todos. Add one above!</Text>
+          <View>
+            <Text style={styles.empty}>{t("Todo.noTodos")}</Text>
+            <Text style={styles.empty}>{t("Todo.noTodosDescription")}</Text>
+          </View>
         }
         keyboardShouldPersistTaps="handled"
         scrollEnabled={true}

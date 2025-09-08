@@ -1,13 +1,15 @@
 import React from "react";
 import { Stack } from "expo-router";
 import { ThemeProvider } from "../src/providers/ThemeProvider";
+import { LanguageProvider } from "../src/providers/LanguageProvider";
 import { AppLoader } from "../src/components/AppLoader";
-import { useTheme } from "../src/hooks";
+import { useTheme, useLanguage } from "../src/hooks";
 
 const AppContent: React.FC = () => {
-  const { isLoaded } = useTheme();
+  const { isLoaded: themeLoaded } = useTheme();
+  const { isLoaded: languageLoaded } = useLanguage();
 
-  if (!isLoaded) {
+  if (!themeLoaded || !languageLoaded) {
     return <AppLoader />;
   }
 
@@ -20,8 +22,10 @@ const AppContent: React.FC = () => {
 
 export default function RootLayout() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }

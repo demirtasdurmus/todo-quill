@@ -2,6 +2,7 @@ import { useReducer, useEffect } from "react";
 import { Alert } from "react-native";
 import { Filter, loadTodos, saveTodos } from "../services/storage";
 import { createTodo, Todo } from "../utils";
+import { TranslationFunction } from "../i18n";
 
 type TodoState = {
   todos: Todo[];
@@ -24,7 +25,7 @@ const initialState: TodoState = {
   filter: "all",
 };
 
-export const useTodoReducer = () => {
+export const useTodoReducer = (t: TranslationFunction) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { todos, text, filter } = state;
 
@@ -45,12 +46,12 @@ export const useTodoReducer = () => {
   };
 
   const handleRemoveTodo = (id: string) => {
-    const t = todos.find((x) => x.id === id);
-    if (!t) return;
-    Alert.alert("Delete todo", `Delete "${t.title}"?`, [
-      { text: "Cancel", style: "cancel" },
+    const todo = todos.find((x) => x.id === id);
+    if (!todo) return;
+    Alert.alert(t("Todo.deleteTodo"), `${todo.title}`, [
+      { text: t("Common.cancel"), style: "cancel" },
       {
-        text: "Delete",
+        text: t("Common.delete"),
         style: "destructive",
         onPress: () => dispatch({ type: "DELETE_TODO", payload: id }),
       },
@@ -59,10 +60,10 @@ export const useTodoReducer = () => {
 
   const handleClearDone = () => {
     if (!todos.some((t) => t.done)) return;
-    Alert.alert("Clear completed", "Remove all completed todos?", [
-      { text: "Cancel", style: "cancel" },
+    Alert.alert(t("Common.clearDone"), t("Common.removeAllDoneTodos"), [
+      { text: t("Common.cancel"), style: "cancel" },
       {
-        text: "Remove",
+        text: t("Common.delete"),
         style: "destructive",
         onPress: () => dispatch({ type: "CLEAR_DONE" }),
       },

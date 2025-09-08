@@ -3,10 +3,14 @@ import { Todo } from "../utils";
 import { ThemeMode } from "../providers/ThemeProvider";
 
 export type Filter = "all" | "active" | "done";
+export type Language = "en" | "tr";
 
 const TODO_KEY = "todos:v1";
 const THEME_KEY = "theme:v1";
+const LANGUAGE_KEY = "language:v1";
+
 export const THEME_MODES: ThemeMode[] = ["system", "light", "dark"];
+export const SUPPORTED_LANGUAGES: Language[] = ["en", "tr"];
 
 export async function loadTodos(): Promise<Todo[]> {
   try {
@@ -55,6 +59,31 @@ export async function loadThemeMode(): Promise<ThemeMode> {
 export async function saveThemeMode(themeMode: ThemeMode): Promise<void> {
   try {
     await AsyncStorage.setItem(THEME_KEY, JSON.stringify(themeMode));
+  } catch {
+    // TODO: Handle save errors
+  }
+}
+
+export async function loadLanguage(): Promise<Language | null> {
+  try {
+    const raw = await AsyncStorage.getItem(LANGUAGE_KEY);
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    if (
+      typeof parsed === "string" &&
+      SUPPORTED_LANGUAGES.includes(parsed as Language)
+    ) {
+      return parsed as Language;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export async function saveLanguage(language: Language): Promise<void> {
+  try {
+    await AsyncStorage.setItem(LANGUAGE_KEY, JSON.stringify(language));
   } catch {
     // TODO: Handle save errors
   }
