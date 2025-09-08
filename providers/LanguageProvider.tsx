@@ -52,8 +52,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
       if (languageToUse) {
         setLanguageState(languageToUse);
         i18n.locale = languageToUse;
-        setIsLoaded(true);
       }
+
+      setIsLoaded(true);
     });
   }, []);
 
