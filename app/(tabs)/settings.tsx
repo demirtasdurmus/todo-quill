@@ -1,7 +1,7 @@
 import { ThemeToggle } from "../../components/ThemeToggle";
 import { LanguageToggle } from "../../components/LanguageToggle";
 import { SafeAreaLayout } from "../../layouts/SafeArealLayout";
-import { ScreenHeader } from "../../components/ScreenHeader";
+import { ScreenHeader } from "../../components/ui/ScreenHeader";
 import { AppLayout } from "../../layouts/AppLayout";
 import { useLanguage } from "../../hooks";
 

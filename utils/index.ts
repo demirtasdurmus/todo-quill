@@ -1,4 +1,5 @@
 import { getLocales } from "expo-localization";
+import { Ionicons } from "@expo/vector-icons";
 import { Language, SUPPORTED_LANGUAGES } from "../services/storage";
 
 export type Todo = {
@@ -60,3 +61,5 @@ export function detectDeviceLanguage(): Language {
   }
   return "en";
 }
+
+export type ExpoVectorIcon = keyof typeof Ionicons.glyphMap;

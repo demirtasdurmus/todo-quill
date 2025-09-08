@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
-import { TodoItem } from "./TodoItem";
-import { Button } from "./Button";
+import { Button, TodoItem } from "./ui";
 import { useTheme } from "../hooks/use-theme";
 import { useThemedStyles } from "../hooks/use-themed-styles";
 import { useTodoReducer } from "../hooks";

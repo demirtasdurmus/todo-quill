@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, Pressable } from "react-native";
-import { useTheme, useThemedStyles } from "../hooks";
+import { useTheme, useThemedStyles } from "../../hooks";
 
 type ButtonProps = {
   label: string;
@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonProps> = ({ label, active, onPress }) => {
   const styles = useThemedStyles(
     (theme) =>
       StyleSheet.create({
-        filterBtn: {
+        btn: {
           backgroundColor: theme.colors.border,
           paddingHorizontal: theme.spacing.md,
           paddingVertical: theme.spacing.xs,
@@ -42,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({ label, active, onPress }) => {
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [
-        styles.filterBtn,
+        styles.btn,
         active && styles.filterActive,
         pressed && styles.pressed,
       ]}
