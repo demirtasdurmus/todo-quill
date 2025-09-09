@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useLanguage } from "@/hooks";
 import { Language, SUPPORTED_LANGUAGES } from "@/services/storage";
 import { TranslationFunction } from "@/i18n";
@@ -31,11 +31,15 @@ const getLanguageName = (language: Language, t: TranslationFunction) => {
 export const LanguageToggle: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
 
-  const languageOptions = SUPPORTED_LANGUAGES.map((lang) => ({
-    value: lang,
-    label: getLanguageName(lang, t),
-    icon: getLanguageIcon(lang),
-  }));
+  const languageOptions = useMemo(
+    () =>
+      SUPPORTED_LANGUAGES.map((lang) => ({
+        value: lang,
+        label: getLanguageName(lang, t),
+        icon: getLanguageIcon(lang),
+      })),
+    [t]
+  );
 
   return (
     <SettingsSection

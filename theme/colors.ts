@@ -1,4 +1,4 @@
-export const themes = {
+export const colors = {
   light: {
     // Brand colors
     primary: "#3b82f6",

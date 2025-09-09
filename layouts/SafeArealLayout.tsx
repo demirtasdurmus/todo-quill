@@ -6,22 +6,15 @@ import {
   StyleSheet,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useTheme, useThemedStyles } from "@/hooks";
+import { useTheme } from "@/hooks";
 
 export const SafeAreaLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();
 
-  const styles = useThemedStyles(
-    (theme) =>
-      StyleSheet.create({
-        container: { flex: 1, backgroundColor: theme.colors.background },
-        keyboardAvoidingView: { flex: 1 },
-      }),
-    theme
-  );
-
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.keyboardAvoidingView}
@@ -34,3 +27,8 @@ export const SafeAreaLayout: React.FC<PropsWithChildren> = ({ children }) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { flex: 1 },
+  keyboardAvoidingView: { flex: 1 },
+});

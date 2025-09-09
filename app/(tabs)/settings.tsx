@@ -1,19 +1,11 @@
 import { AppLayout, SafeAreaLayout } from "@/layouts";
-import { useLanguage } from "@/hooks";
-import { ScreenHeader } from "@/components/shared/ScreenHeader";
-import { ThemeToggle } from "@/components/settings/ThemeToggle";
-import { LanguageToggle } from "@/components/settings/LanguageToggle";
+import { Settings } from "@/components/settings";
 
 export default function SettingsScreen() {
-  const { t } = useLanguage();
-
   return (
     <AppLayout>
       <SafeAreaLayout>
-        <ScreenHeader>{t("Navigation.settings")}</ScreenHeader>
-
-        <LanguageToggle />
-        <ThemeToggle />
+        <Settings />
       </SafeAreaLayout>
     </AppLayout>
   );

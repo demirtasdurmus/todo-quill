@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { useTheme, useThemedStyles } from "@/hooks";
+import { useTheme } from "@/hooks";
+import { globalStyles } from "@/theme";
 
 export type RadioButtonProps = {
   selected: boolean;
@@ -12,34 +13,39 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
   size = 20,
 }) => {
   const { theme } = useTheme();
-  const styles = useThemedStyles(
-    (theme) =>
-      StyleSheet.create({
-        radioButton: {
-          width: size,
-          height: size,
-          borderRadius: theme.borderRadius.full,
-          borderWidth: 2,
-          borderColor: theme.colors.primary,
-          alignItems: "center",
-          justifyContent: "center",
-        },
-        radioButtonSelected: {
-          backgroundColor: theme.colors.primary,
-        },
-        radioButtonInner: {
-          width: size * 0.4,
-          height: size * 0.4,
-          borderRadius: theme.borderRadius.sm,
-          backgroundColor: theme.colors.surface,
-        },
-      }),
-    theme
-  );
 
   return (
-    <View style={[styles.radioButton, selected && styles.radioButtonSelected]}>
-      {selected && <View style={styles.radioButtonInner} />}
+    <View
+      style={[
+        styles.radioButton,
+        { width: size, height: size, borderColor: theme.colors.primary },
+        selected && { backgroundColor: theme.colors.primary },
+      ]}
+    >
+      {selected && (
+        <View
+          style={[
+            styles.radioButtonInner,
+            {
+              width: size * 0.4,
+              height: size * 0.4,
+              backgroundColor: theme.colors.surface,
+            },
+          ]}
+        />
+      )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  radioButton: {
+    borderRadius: globalStyles.borderRadius.full,
+    borderWidth: 2,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  radioButtonInner: {
+    borderRadius: globalStyles.borderRadius.sm,
+  },
+});

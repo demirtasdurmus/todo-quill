@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { TranslateOptions } from "i18n-js";
 import { loadLanguage, saveLanguage, Language } from "@/services/storage";
 import {
@@ -19,9 +25,7 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(deviceLanguage);
   const [isLoaded, setIsLoaded] = useState(false);
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useLanguage, useTheme } from "@/hooks";
 import { ThemeMode } from "@/providers";
 import { THEME_MODES } from "@/services/storage";
@@ -23,11 +23,15 @@ export const ThemeToggle: React.FC = () => {
   const { themeMode, setThemeMode } = useTheme();
   const { t } = useLanguage();
 
-  const themeOptions = THEME_MODES.map((mode) => ({
-    value: mode,
-    label: t(`Theme.${mode}`),
-    icon: getThemeIcon(mode),
-  }));
+  const themeOptions = useMemo(
+    () =>
+      THEME_MODES.map((mode) => ({
+        value: mode,
+        label: t(`Theme.${mode}`),
+        icon: getThemeIcon(mode),
+      })),
+    [t]
+  );
 
   return (
     <SettingsSection

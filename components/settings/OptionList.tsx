@@ -1,7 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme, useThemedStyles } from "@/hooks";
+import { globalStyles } from "@/theme";
+import { useTheme } from "@/hooks";
 import { OptionItem } from "./OptionItem";
 
 export type OptionListProps<T> = {
@@ -20,20 +21,9 @@ export const OptionList = <T,>({
   onSelect,
 }: OptionListProps<T>) => {
   const { theme } = useTheme();
-  const styles = useThemedStyles(
-    (theme) =>
-      StyleSheet.create({
-        card: {
-          backgroundColor: theme.colors.surface,
-          borderRadius: theme.borderRadius.lg,
-          ...theme.shadows.sm,
-        },
-      }),
-    theme
-  );
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, { backgroundColor: theme.colors.surface }]}>
       {options.map((option, index) => (
         <OptionItem
           key={String(option.value)}
@@ -48,3 +38,10 @@ export const OptionList = <T,>({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    borderRadius: globalStyles.borderRadius.lg,
+    ...globalStyles.shadows.sm,
+  },
+});

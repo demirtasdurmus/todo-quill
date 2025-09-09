@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useTheme, useThemedStyles } from "@/hooks";
+import { useTheme } from "@/hooks";
 import { Ionicons } from "@expo/vector-icons";
 import { RadioButton } from "@/components/ui/RadioButton";
+import { globalStyles } from "@/theme";
 
 export type OptionItemProps<T> = {
   value: T;
@@ -22,45 +23,48 @@ export const OptionItem = <T,>({
   isLast = false,
 }: OptionItemProps<T>) => {
   const { theme } = useTheme();
-  const styles = useThemedStyles(
-    (theme) =>
-      StyleSheet.create({
-        option: {
-          flexDirection: "row",
-          alignItems: "center",
-          paddingHorizontal: theme.spacing.md,
-          paddingVertical: theme.spacing.sm,
-          borderBottomWidth: isLast ? 0 : 1,
-          borderBottomColor: theme.colors.border,
-        },
-        optionContent: {
-          flex: 1,
-          flexDirection: "row",
-          alignItems: "center",
-        },
-        optionIcon: {
-          marginRight: theme.spacing.sm,
-          width: 24,
-          alignItems: "center",
-        },
-        optionText: {
-          fontSize: theme.typography.sizes.base,
-          color: theme.colors.text.primary,
-          flex: 1,
-        },
-      }),
-    theme
-  );
 
   return (
-    <TouchableOpacity style={styles.option} onPress={() => onSelect(value)}>
+    <TouchableOpacity
+      style={[
+        styles.option,
+        { borderBottomColor: theme.colors.border },
+        isLast ? { borderBottomWidth: 0 } : { borderBottomWidth: 1 },
+      ]}
+      onPress={() => onSelect(value)}
+    >
       <View style={styles.optionContent}>
         <View style={styles.optionIcon}>
           <Ionicons name={icon} size={20} color={theme.colors.text.primary} />
         </View>
-        <Text style={styles.optionText}>{label}</Text>
+        <Text style={[styles.optionText, { color: theme.colors.text.primary }]}>
+          {label}
+        </Text>
       </View>
       <RadioButton selected={selected} />
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  option: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: globalStyles.spacing.md,
+    paddingVertical: globalStyles.spacing.sm,
+  },
+  optionContent: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  optionIcon: {
+    marginRight: globalStyles.spacing.sm,
+    width: 24,
+    alignItems: "center",
+  },
+  optionText: {
+    fontSize: globalStyles.typography.sizes.base,
+    flex: 1,
+  },
+});
