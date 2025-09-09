@@ -1,6 +1,6 @@
 {
   "name": "todo-quill",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "index.ts",
   "type": "module",
   "scripts": {

@@ -244,7 +244,7 @@ const MyComponent = () => {
 ### Internationalization Usage
 
 ```typescript
-import { useLanguage } from '../src/hooks';
+import { useLanguage } from '@/hooks';
 
 const MyComponent = () => {
   const { t } = useLanguage();
@@ -270,10 +270,7 @@ The app uses a granular component architecture for maximum reusability:
 
 ```typescript
 // Reusable UI components
-import { RadioButton, OptionList, SettingsSection } from '../components/ui';
-
-// Feature components
-import { LanguageToggle, ThemeToggle } from '../components';
+import { RadioButton, OptionList, SettingsSection } from '@/components/ui';
 
 // Usage example
 const CustomToggle = () => (
