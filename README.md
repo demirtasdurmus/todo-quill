@@ -213,32 +213,28 @@ npm run format:check  # Check code formatting
 ### Theme Usage
 
 ```typescript
-import { useTheme, useThemedStyles } from '@/hooks';
+import { useTheme } from '@/hooks';
+import { globalStyles } from '@/theme';
 
 const MyComponent = () => {
   const { theme } = useTheme();
 
-  const styles = useThemedStyles(
-    (theme) => StyleSheet.create({
-      container: {
-        backgroundColor: theme.colors.background,
-        padding: theme.spacing.md,
-      },
-      title: {
-        color: theme.colors.text.primary,
-        fontSize: theme.typography.sizes.xl,
-        fontWeight: theme.typography.weights.bold,
-      },
-    }),
-    theme
-  );
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello World</Text>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <Text style={[styles.title, { color: theme.colors.text.primary, }]}>Hello World</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: globalStyles.spacing.md,
+  },
+  title: {
+    fontSize: globalStyles.typography.sizes.xl,
+    fontWeight: globalStyles.typography.weights.bold,
+  },
+}),
 ```
 
 ### Internationalization Usage
@@ -262,26 +258,6 @@ const MyComponent = () => {
     </View>
   );
 };
-```
-
-### Component Architecture
-
-The app uses a granular component architecture for maximum reusability:
-
-```typescript
-// Reusable UI components
-import { RadioButton, OptionList, SettingsSection } from '@/components/ui';
-
-// Usage example
-const CustomToggle = () => (
-  <SettingsSection title="Custom Setting" description="Choose your preference">
-    <OptionList
-      options={customOptions}
-      selectedValue={selectedValue}
-      onSelect={setSelectedValue}
-    />
-  </SettingsSection>
-);
 ```
 
 ## Features in Detail
