@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { useTheme } from "../hooks/use-theme";
-import { useThemedStyles } from "../hooks/use-themed-styles";
-import appIcon from "../assets/icon.png";
-import profilePic from "../assets/profile-pic.png";
+import { useTheme, useThemedStyles } from "@/hooks";
+import appIcon from "@/assets/icon.png";
+import profilePic from "@/assets/profile-pic.png";
 
 type HeaderProps = {
   onProfilePress?: () => void;

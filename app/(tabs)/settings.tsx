@@ -1,9 +1,8 @@
-import { ThemeToggle } from "../../components/ThemeToggle";
-import { LanguageToggle } from "../../components/LanguageToggle";
-import { SafeAreaLayout } from "../../layouts/SafeArealLayout";
-import { ScreenHeader } from "../../components/ui/ScreenHeader";
-import { AppLayout } from "../../layouts/AppLayout";
-import { useLanguage } from "../../hooks";
+import { AppLayout, SafeAreaLayout } from "@/layouts";
+import { useLanguage } from "@/hooks";
+import { ScreenHeader } from "@/components/shared/ScreenHeader";
+import { ThemeToggle } from "@/components/settings/ThemeToggle";
+import { LanguageToggle } from "@/components/settings/LanguageToggle";
 
 export default function SettingsScreen() {
   const { t } = useLanguage();

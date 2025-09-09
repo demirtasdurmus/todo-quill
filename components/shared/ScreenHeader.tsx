@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { useTheme } from "../../hooks/use-theme";
-import { useThemedStyles } from "../../hooks/use-themed-styles";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 export const ScreenHeader: React.FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { Theme } from "../providers/ThemeProvider";
+import type { Theme } from "@/providers/ThemeProvider";
 
 export const createThemedStyles = <T>(styleFactory: (_theme: Theme) => T) => {
   return (theme: Theme) => styleFactory(theme);

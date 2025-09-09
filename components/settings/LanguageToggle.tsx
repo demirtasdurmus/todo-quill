@@ -1,11 +1,10 @@
 import React from "react";
-import { useLanguage } from "../hooks/use-language";
-import { Language } from "../services/storage";
-import { SUPPORTED_LANGUAGES } from "../services/storage";
-import { TranslationFunction } from "../i18n";
+import { useLanguage } from "@/hooks";
+import { Language, SUPPORTED_LANGUAGES } from "@/services/storage";
+import { TranslationFunction } from "@/i18n";
+import { ExpoVectorIcon } from "@/utils";
 import { SettingsSection } from "./SettingsSection";
-import { OptionList } from "./ui";
-import { ExpoVectorIcon } from "../utils";
+import { OptionList } from "./OptionList";
 
 const getLanguageIcon = (language: Language): ExpoVectorIcon => {
   switch (language) {

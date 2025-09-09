@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useTheme } from "../hooks/use-theme";
-import { useThemedStyles } from "../hooks/use-themed-styles";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 export type SettingsSectionProps = {
   title: string;
@@ -33,7 +32,7 @@ export const SettingsSection: React.FC<SettingsSectionProps> = ({
           color: theme.colors.text.secondary,
           marginTop: theme.spacing.sm,
           paddingHorizontal: theme.spacing.md,
-          lineHeight: 20,
+          lineHeight: theme.spacing.lg,
         },
       }),
     theme

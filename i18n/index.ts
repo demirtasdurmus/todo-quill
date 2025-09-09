@@ -1,5 +1,5 @@
 import { I18n, TranslateOptions } from "i18n-js";
-import { detectDeviceLanguage, NestedKeyOf } from "../utils";
+import { detectDeviceLanguage, NestedKeyOf } from "@/utils";
 import enTranslations from "./locales/en.json";
 import trTranslations from "./locales/tr.json";
 

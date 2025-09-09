@@ -1,12 +1,12 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
-import { loadLanguage, saveLanguage, Language } from "../services/storage";
+import { TranslateOptions } from "i18n-js";
+import { loadLanguage, saveLanguage, Language } from "@/services/storage";
 import {
   deviceLanguage,
   i18n,
   TranslationFunction,
   TranslationKeys,
-} from "../i18n";
-import { TranslateOptions } from "i18n-js";
+} from "@/i18n";
 
 export type LanguageContextType = {
   language: Language;

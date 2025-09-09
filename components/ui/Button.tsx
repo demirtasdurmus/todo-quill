@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, Pressable } from "react-native";
-import { useTheme, useThemedStyles } from "../../hooks";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 type ButtonProps = {
   label: string;

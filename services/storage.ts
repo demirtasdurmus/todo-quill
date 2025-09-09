@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Todo } from "../utils";
-import { ThemeMode } from "../providers/ThemeProvider";
+import { Todo } from "@/utils";
+import { ThemeMode } from "@/providers/ThemeProvider";
 
 export type Filter = "all" | "active" | "done";
 export type Language = "en" | "tr";

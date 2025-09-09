@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useTheme } from "../../hooks/use-theme";
-import { useThemedStyles } from "../../hooks/use-themed-styles";
+import { useTheme, useThemedStyles } from "@/hooks";
 import { Ionicons } from "@expo/vector-icons";
-import { RadioButton } from "./RadioButton";
+import { RadioButton } from "@/components/ui/RadioButton";
 
 export type OptionItemProps<T> = {
   value: T;

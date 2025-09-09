@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { StyleSheet, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useTheme, useThemedStyles } from "../hooks";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 export const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();

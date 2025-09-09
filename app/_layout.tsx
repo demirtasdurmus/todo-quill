@@ -1,9 +1,8 @@
 import React from "react";
 import { Stack } from "expo-router";
-import { ThemeProvider } from "../providers/ThemeProvider";
-import { LanguageProvider } from "../providers/LanguageProvider";
-import { AppLoader } from "../components/ui/AppLoader";
-import { useTheme, useLanguage } from "../hooks";
+import { useTheme, useLanguage } from "@/hooks";
+import { ThemeProvider, LanguageProvider } from "@/providers";
+import { AppLoader } from "@/components/shared/AppLoader";
 
 const AppContent: React.FC = () => {
   const { isLoaded: themeLoaded } = useTheme();

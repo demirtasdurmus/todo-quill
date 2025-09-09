@@ -1,10 +1,13 @@
 import React, { useMemo } from "react";
 import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
-import { Button, TodoItem } from "./ui";
-import { useTheme } from "../hooks/use-theme";
-import { useThemedStyles } from "../hooks/use-themed-styles";
-import { useTodoReducer } from "../hooks";
-import { useLanguage } from "../hooks";
+import { Button } from "@/components/ui";
+import {
+  useTheme,
+  useThemedStyles,
+  useLanguage,
+  useTodoReducer,
+} from "@/hooks";
+import { TodoItem } from "./TodoItem";
 
 export const Todo: React.FC = () => {
   const { theme } = useTheme();
@@ -35,19 +38,26 @@ export const Todo: React.FC = () => {
   const styles = useThemedStyles(
     (theme) =>
       StyleSheet.create({
-        filters: {
+        actions: {
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        },
+        filterActions: {
           flexDirection: "row",
           alignItems: "center",
           gap: theme.spacing.xs,
         },
-        meta: {
-          fontSize: theme.typography.sizes.sm,
-          color: theme.colors.text.secondary,
-          marginRight: theme.spacing.sm,
-        },
-        clear: {
+        clearAction: {
           fontSize: theme.typography.sizes.sm,
           color: theme.colors.error,
+        },
+        metaContainer: {
+          marginTop: theme.spacing.sm,
+        },
+        metaText: {
+          fontSize: theme.typography.sizes.sm,
+          color: theme.colors.success,
         },
         inputRow: {
           flexDirection: "row",
@@ -71,7 +81,7 @@ export const Todo: React.FC = () => {
         contentContainer: {
           paddingTop: theme.spacing.sm,
         },
-        empty: {
+        contentEmpty: {
           textAlign: "center",
           marginTop: theme.spacing.xl,
           color: theme.colors.text.secondary,
@@ -82,30 +92,33 @@ export const Todo: React.FC = () => {
 
   return (
     <>
-      <View style={styles.filters}>
-        <Button
-          label={t("Common.all")}
-          active={filter === "all"}
-          onPress={() => setFilter("all")}
-        />
-        <Button
-          label={t("Common.active")}
-          active={filter === "active"}
-          onPress={() => setFilter("active")}
-        />
-        <Button
-          label={t("Common.done")}
-          active={filter === "done"}
-          onPress={() => setFilter("done")}
-        />
-        <View style={{ flex: 1 }} />
+      <View style={styles.actions}>
+        <View style={styles.filterActions}>
+          <Button
+            label={t("Common.all")}
+            active={filter === "all"}
+            onPress={() => setFilter("all")}
+          />
+          <Button
+            label={t("Common.active")}
+            active={filter === "active"}
+            onPress={() => setFilter("active")}
+          />
+          <Button
+            label={t("Common.done")}
+            active={filter === "done"}
+            onPress={() => setFilter("done")}
+          />
+        </View>
 
-        <Text style={styles.meta}>
-          {t("Common.itemsLeft", { count: remaining })}
-        </Text>
-
-        <Text style={styles.clear} onPress={handleClearDone}>
+        <Text style={styles.clearAction} onPress={handleClearDone}>
           {t("Common.clearDone")}
+        </Text>
+      </View>
+
+      <View style={styles.metaContainer}>
+        <Text style={styles.metaText}>
+          {t("Common.itemsLeft", { count: remaining })}
         </Text>
       </View>
 
@@ -134,8 +147,10 @@ export const Todo: React.FC = () => {
         )}
         ListEmptyComponent={
           <View>
-            <Text style={styles.empty}>{t("Todo.noTodos")}</Text>
-            <Text style={styles.empty}>{t("Todo.noTodosDescription")}</Text>
+            <Text style={styles.contentEmpty}>{t("Todo.noTodos")}</Text>
+            <Text style={styles.contentEmpty}>
+              {t("Todo.noTodosDescription")}
+            </Text>
           </View>
         }
         keyboardShouldPersistTaps="handled"

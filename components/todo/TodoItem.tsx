@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Checkbox from "expo-checkbox";
-import { Todo } from "../../utils";
-import { useTheme, useThemedStyles } from "../../hooks";
+import { Todo } from "@/utils";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 type TodoItemProps = {
   item: Todo;

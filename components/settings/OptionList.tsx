@@ -1,8 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { useTheme } from "../../hooks/use-theme";
-import { useThemedStyles } from "../../hooks/use-themed-styles";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme, useThemedStyles } from "@/hooks";
 import { OptionItem } from "./OptionItem";
 
 export type OptionListProps<T> = {

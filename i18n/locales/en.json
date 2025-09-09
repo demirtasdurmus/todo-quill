@@ -6,7 +6,7 @@
     "all": "All",
     "active": "Active",
     "itemsLeft": {
-      "zero": "No items left",
+      "zero": "No active items",
       "one": "{{count}} item left",
       "other": "{{count}} items left"
     },

@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { useTheme } from "../../hooks/use-theme";
-import { useThemedStyles } from "../../hooks/use-themed-styles";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 export type RadioButtonProps = {
   selected: boolean;

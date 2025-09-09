@@ -1,7 +1,6 @@
-import { SafeAreaLayout } from "../../layouts/SafeArealLayout";
-import { Header } from "../../components/Header";
-import { Todo } from "../../components/Todo";
-import { AppLayout } from "../../layouts/AppLayout";
+import { AppLayout, SafeAreaLayout } from "@/layouts";
+import { Header } from "@/components/shared/Header";
+import { Todo } from "@/components/todo/Todo";
 
 export default function HomeScreen() {
   return (

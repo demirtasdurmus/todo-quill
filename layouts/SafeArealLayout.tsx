@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useTheme, useThemedStyles } from "../hooks";
+import { useTheme, useThemedStyles } from "@/hooks";
 
 export const SafeAreaLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();

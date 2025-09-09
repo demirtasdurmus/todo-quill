@@ -2,16 +2,16 @@
   "Common": {
     "cancel": "İptal",
     "delete": "Sil",
-    "done": "Bitti",
+    "done": "Tamamlandı",
     "all": "Tümü",
     "active": "Aktif",
     "itemsLeft": {
-      "zero": "Hiç görev yok",
+      "zero": "Aktif görev yok",
       "one": "{{count}} görev kaldı",
       "other": "{{count}} görev kaldı"
     },
-    "clearDone": "Bitenleri sil",
-    "removeAllDoneTodos": "Biten tüm görevleri sil"
+    "clearDone": "Tamamlananları sil",
+    "removeAllDoneTodos": "Tamamlanan tüm görevleri sil"
   },
 
   "Navigation": {
