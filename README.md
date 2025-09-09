@@ -139,13 +139,7 @@ app/                   # Expo Router file-based navigation
 
 components/          # Feature components
 ├── ui/             # Reusable UI components
-│   ├── RadioButton.tsx
-│   ├── OptionItem.tsx
-│   ├── OptionList.tsx
-│   └── SettingsSection.tsx
-├── LanguageToggle.tsx
-├── ThemeToggle.tsx
-└── Todo.tsx
+
 i18n/               # Internationalization
 ├── en.json         # English translations
 ├── tr.json         # Turkish translations
@@ -219,7 +213,7 @@ npm run format:check  # Check code formatting
 ### Theme Usage
 
 ```typescript
-import { useTheme, useThemedStyles } from '../src/hooks';
+import { useTheme, useThemedStyles } from '@/hooks';
 
 const MyComponent = () => {
   const { theme } = useTheme();
