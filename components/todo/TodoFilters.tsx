@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { Button } from "@/components/ui";
-import { useTheme, useLanguage } from "@/hooks";
+import { StyleSheet, Text, View } from "react-native";
+import { useLanguage, useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { Button } from "@/components/ui";
 
 type FilterType = "all" | "active" | "done";
 

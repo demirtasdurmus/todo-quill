@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { globalStyles } from "@/theme";
 import { useTheme } from "@/hooks";
+import { globalStyles } from "@/theme";
 import { OptionItem } from "./OptionItem";
 
 export type OptionListProps<T> = {

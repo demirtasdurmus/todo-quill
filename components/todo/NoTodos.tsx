@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useTheme, useLanguage } from "@/hooks";
+import { useLanguage, useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
 
 export const NoTodos: React.FC = () => {

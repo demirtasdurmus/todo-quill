@@ -4,5 +4,19 @@
   "trailingComma": "es5",
   "printWidth": 80,
   "tabWidth": 2,
-  "useTabs": false
+  "useTabs": false,
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^react$",
+    "^react-native$",
+    "<BUILTIN_MODULES>",
+    "^i18n*",
+    "^expo.*",
+    "^@expo.*",
+    "^@react-native*",
+    "<THIRD_PARTY_MODULES>",
+    "^(@/app|@/assets|@/components|@/hooks|@/i18n|@/layouts|@/providers|@/services|@/theme|@/utils)(/.*)$",
+    "^[./]",
+    ""
+  ]
 }

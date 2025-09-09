@@ -6,13 +6,13 @@ import React, {
   useState,
 } from "react";
 import { TranslateOptions } from "i18n-js";
-import { loadLanguage, saveLanguage, Language } from "@/services/storage";
 import {
   deviceLanguage,
   i18n,
   TranslationFunction,
   TranslationKeys,
 } from "@/i18n";
+import { Language, loadLanguage, saveLanguage } from "@/services/storage";
 
 export type LanguageContextType = {
   language: Language;

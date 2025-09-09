@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { globalStyles } from "@/theme";
+import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "@/hooks";
+import { globalStyles } from "@/theme";
 
 export type SettingsSectionProps = {
   title: string;

@@ -6,8 +6,8 @@ import React, {
   useState,
 } from "react";
 import { useColorScheme } from "react-native";
-import { loadThemeMode, saveThemeMode } from "@/services/storage";
 import { globalStyles } from "@/theme";
+import { loadThemeMode, saveThemeMode } from "@/services/storage";
 
 export type ThemeMode = "light" | "dark" | "system";
 

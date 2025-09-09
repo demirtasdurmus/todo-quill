@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { useLanguage, useTheme } from "@/hooks";
 import { ThemeMode } from "@/providers";
-import { THEME_MODES } from "@/services/storage";
 import { ExpoVectorIcon } from "@/utils";
-import { SettingsSection } from "./SettingsSection";
+import { THEME_MODES } from "@/services/storage";
 import { OptionList } from "./OptionList";
+import { SettingsSection } from "./SettingsSection";
 
 const getThemeIcon = (mode: ThemeMode): ExpoVectorIcon => {
   switch (mode) {

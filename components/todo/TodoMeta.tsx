@@ -1,6 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { useTheme, useLanguage } from "@/hooks";
+import { StyleSheet, Text, View } from "react-native";
+import { useLanguage, useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
 
 type TodoMetaProps = {

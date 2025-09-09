@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack } from "expo-router";
-import { useTheme, useLanguage } from "@/hooks";
-import { ThemeProvider, LanguageProvider } from "@/providers";
+import { useLanguage, useTheme } from "@/hooks";
+import { LanguageProvider, ThemeProvider } from "@/providers";
 import { AppLoader } from "@/components/shared/AppLoader";
 
 const AppContent: React.FC = () => {

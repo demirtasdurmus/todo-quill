@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { globalStyles } from "@/theme";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "@/hooks";
+import { globalStyles } from "@/theme";
 import appIcon from "@/assets/icon.png";
 import profilePic from "@/assets/profile-pic.png";
 

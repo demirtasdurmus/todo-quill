@@ -1,9 +1,9 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
-import type { Todo } from "@/utils";
-import { TodoItem } from "./TodoItem";
 import { globalStyles } from "@/theme";
+import type { Todo } from "@/utils";
 import { NoTodos } from "./NoTodos";
+import { TodoItem } from "./TodoItem";
 
 type TodoListProps = {
   todos: Todo[];
