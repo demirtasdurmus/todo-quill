@@ -33,13 +33,9 @@ export const Todo: React.FC = () => {
 
   return (
     <>
-      <TodoFilters
-        currentFilter={filter}
-        onFilterChange={setFilter}
-        onClearDone={handleClearDone}
-      />
+      <TodoFilters currentFilter={filter} onFilterChange={setFilter} />
 
-      <TodoMeta remainingCount={remaining} />
+      <TodoMeta remainingCount={remaining} onClearDone={handleClearDone} />
 
       <TodoInput value={text} onChangeText={setText} onSubmit={handleAddTodo} />
 
