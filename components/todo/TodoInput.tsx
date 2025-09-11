@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { useLanguage, useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
@@ -16,6 +16,14 @@ export const TodoInput: React.FC<TodoInputProps> = ({
 }) => {
   const { theme } = useTheme();
   const { t } = useLanguage();
+  const inputRef = useRef<TextInput>(null);
+
+  const onSubmitWithFocus = () => {
+    onSubmit();
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
+  };
 
   return (
     <View
@@ -28,12 +36,13 @@ export const TodoInput: React.FC<TodoInputProps> = ({
       ]}
     >
       <TextInput
+        ref={inputRef}
         value={value}
         onChangeText={onChangeText}
         placeholder={t("Todo.addTodo")}
         placeholderTextColor={theme.colors.text.secondary}
         returnKeyType="done"
-        onSubmitEditing={onSubmit}
+        onSubmitEditing={onSubmitWithFocus}
         style={[styles.input, { color: theme.colors.text.primary }]}
       />
     </View>

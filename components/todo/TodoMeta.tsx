@@ -33,7 +33,7 @@ export const TodoMeta: React.FC<TodoMetaProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: globalStyles.spacing.sm,
+    marginTop: globalStyles.spacing.md,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
