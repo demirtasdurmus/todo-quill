@@ -1,70 +1,72 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
-import { RadioButton } from "@/components/ui/RadioButton";
 
-export type OptionItemProps<T> = {
-  value: T;
+type InfoItemProps = {
   label: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  selected: boolean;
-  onSelect: (_value: T) => void;
+  value: string;
+  icon?: keyof typeof Ionicons.glyphMap;
   isLast?: boolean;
 };
 
-export const OptionItem = <T,>({
-  value,
+export const InfoItem: React.FC<InfoItemProps> = ({
   label,
+  value,
   icon,
-  selected,
-  onSelect,
   isLast = false,
-}: OptionItemProps<T>) => {
+}) => {
   const { theme } = useTheme();
 
   return (
-    <TouchableOpacity
+    <View
       style={[
-        styles.option,
+        styles.container,
         { borderBottomColor: theme.colors.border },
         isLast ? { borderBottomWidth: 0 } : { borderBottomWidth: 1 },
       ]}
-      onPress={() => onSelect(value)}
     >
-      <View style={styles.optionContent}>
-        <View style={styles.optionIcon}>
-          <Ionicons name={icon} size={20} color={theme.colors.text.primary} />
-        </View>
-        <Text style={[styles.optionText, { color: theme.colors.text.primary }]}>
+      <View style={styles.content}>
+        {icon && (
+          <View style={styles.icon}>
+            <Ionicons name={icon} size={20} color={theme.colors.text.primary} />
+          </View>
+        )}
+        <Text style={[styles.labelText, { color: theme.colors.text.primary }]}>
           {label}
         </Text>
       </View>
-      <RadioButton selected={selected} />
-    </TouchableOpacity>
+      <Text style={[styles.valueText, { color: theme.colors.text.secondary }]}>
+        {value}
+      </Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  option: {
+  container: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: globalStyles.spacing.md,
     paddingVertical: globalStyles.spacing.sm,
   },
-  optionContent: {
+  content: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },
-  optionIcon: {
+  icon: {
     marginRight: globalStyles.spacing.sm,
     width: globalStyles.spacing.lg,
     alignItems: "center",
   },
-  optionText: {
+  labelText: {
     fontSize: globalStyles.typography.sizes.sm,
     flex: 1,
+  },
+  valueText: {
+    fontSize: globalStyles.typography.sizes.sm,
+    fontFamily: "monospace",
   },
 });

@@ -37,16 +37,16 @@ export const SettingsSection: React.FC<SettingsSectionProps> = ({
 
 const styles = StyleSheet.create({
   section: {
-    marginTop: globalStyles.spacing.sm,
+    marginTop: globalStyles.spacing.md,
   },
   sectionTitle: {
-    fontSize: globalStyles.typography.sizes.sm,
+    fontSize: globalStyles.typography.sizes.base,
     fontWeight: globalStyles.typography.weights.semibold,
     marginBottom: globalStyles.spacing.sm,
     paddingHorizontal: globalStyles.spacing.md,
   },
   description: {
-    fontSize: globalStyles.typography.sizes.sm,
+    fontSize: globalStyles.typography.sizes.xs,
     marginTop: globalStyles.spacing.sm,
     paddingHorizontal: globalStyles.spacing.md,
     lineHeight: globalStyles.spacing.lg,

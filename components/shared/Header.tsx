@@ -1,15 +1,10 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
 import appIcon from "@/assets/icon.png";
-import profilePic from "@/assets/profile-pic.png";
 
-type HeaderProps = {
-  onProfilePress?: () => void;
-};
-
-export const Header: React.FC<HeaderProps> = ({ onProfilePress }) => {
+export const Header: React.FC = () => {
   const { theme } = useTheme();
 
   return (
@@ -20,20 +15,6 @@ export const Header: React.FC<HeaderProps> = ({ onProfilePress }) => {
         <Text style={[styles.appName, { color: theme.colors.text.primary }]}>
           TodoQuill
         </Text>
-      </View>
-
-      <View style={styles.rightSection}>
-        <TouchableOpacity
-          style={styles.profileButton}
-          onPress={onProfilePress}
-          activeOpacity={0.7}
-        >
-          <Image
-            source={profilePic}
-            style={styles.iconImage}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
       </View>
     </View>
   );

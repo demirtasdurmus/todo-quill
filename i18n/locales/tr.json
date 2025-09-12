@@ -29,8 +29,11 @@
   "Settings": {
     "theme": "Tema",
     "language": "Dil",
-    "themeDescription": "Otomatik, sistem genelinde renk şemasını kontrol etmenize izin veren işletim sistemlerinde desteklenir.",
-    "languageDescription": "Uygulama arayüzü için tercih ettiğiniz dili seçin."
+    "themeDescription": "Otomatik, sistem genelinde renk tonunu kontrol etmenize izin veren işletim sistemlerinde desteklenir.",
+    "languageDescription": "Uygulama arayüzü için tercih ettiğiniz dili seçin.",
+    "appInfo": "Uygulama Bilgisi",
+    "appInfoDescription": "Bu uygulamanın sürüm bilgileri.",
+    "appVersion": "Uygulama Sürümü"
   },
 
   "Theme": {
