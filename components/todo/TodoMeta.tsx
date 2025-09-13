@@ -2,14 +2,19 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useLanguage, useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { Filter } from "@/services/storage";
 
 type TodoMetaProps = {
   remainingCount: number;
+  doneCount: number;
+  filter: Filter;
   onClearDone: () => void;
 };
 
 export const TodoMeta: React.FC<TodoMetaProps> = ({
   remainingCount,
+  doneCount,
+  filter,
   onClearDone,
 }) => {
   const { theme } = useTheme();
@@ -17,16 +22,18 @@ export const TodoMeta: React.FC<TodoMetaProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, { color: theme.colors.success }]}>
+      <Text style={[styles.text, { color: theme.colors.primary }]}>
         {t("Common.itemsLeft", { count: remainingCount })}
       </Text>
 
-      <Text
-        style={[styles.clearAction, { color: theme.colors.error }]}
-        onPress={onClearDone}
-      >
-        {t("Common.clearDone")}
-      </Text>
+      {doneCount > 0 && filter !== "active" && (
+        <Text
+          style={[styles.clearAction, { color: theme.colors.error }]}
+          onPress={onClearDone}
+        >
+          {t("Common.clearDone")}
+        </Text>
+      )}
     </View>
   );
 };

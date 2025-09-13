@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Checkbox from "expo-checkbox";
+import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
 import { Todo } from "@/utils";
@@ -39,7 +40,11 @@ export const TodoItem: React.FC<TodoItemProps> = ({
           style={[
             styles.title,
             { color: theme.colors.text.primary },
-            item.done && { ...styles.done, color: theme.colors.text.secondary },
+            item.done && {
+              ...styles.done,
+              color: theme.colors.text.secondary,
+              textDecorationColor: theme.colors.error,
+            },
           ]}
           numberOfLines={2}
         >
@@ -52,9 +57,11 @@ export const TodoItem: React.FC<TodoItemProps> = ({
         onPress={() => onDelete(item.id)}
         style={styles.deleteBtn}
       >
-        <Text style={[styles.deleteBtnText, { color: theme.colors.error }]}>
-          ✕
-        </Text>
+        <Ionicons
+          name="trash-outline"
+          size={globalStyles.typography.sizes.xl}
+          color={theme.colors.error}
+        />
       </Pressable>
     </View>
   );
@@ -86,8 +93,5 @@ const styles = StyleSheet.create({
   },
   deleteBtn: {
     marginLeft: globalStyles.spacing.sm,
-  },
-  deleteBtnText: {
-    fontSize: globalStyles.typography.sizes.lg,
   },
 });

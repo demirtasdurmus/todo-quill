@@ -23,7 +23,10 @@
     "addTodo": "Görev Ekle",
     "deleteTodo": "Görev Sil",
     "noTodos": "Henüz görev yok",
-    "noTodosDescription": "Başlamak için ilk görevinizi ekleyin"
+    "noActiveTodos": "Henüz aktif görev yok",
+    "noDoneTodos": "Henüz tamamlanan görev yok",
+    "noTodosDescription": "Başlamak için ilk görevinizi ekleyin",
+    "noDoneTodosDescription": "Burada görmek için ilk görevinizi tamamlayın"
   },
 
   "Settings": {
@@ -33,7 +36,7 @@
     "languageDescription": "Uygulama arayüzü için tercih ettiğiniz dili seçin.",
     "appInfo": "Uygulama Bilgisi",
     "appInfoDescription": "Bu uygulamanın sürüm bilgileri.",
-    "appVersion": "Uygulama Sürümü"
+    "appVersion": "Sürüm"
   },
 
   "Theme": {

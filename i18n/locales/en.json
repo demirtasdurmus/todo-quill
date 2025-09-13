@@ -23,7 +23,10 @@
     "addTodo": "Add Todo",
     "deleteTodo": "Delete Todo",
     "noTodos": "No todos yet",
-    "noTodosDescription": "Add your first todo to get started"
+    "noActiveTodos": "No active todos yet",
+    "noDoneTodos": "No done todos yet",
+    "noTodosDescription": "Add your first todo to get started",
+    "noDoneTodosDescription": "Check off your first todo to see here"
   },
 
   "Settings": {
@@ -33,7 +36,7 @@
     "languageDescription": "Choose your preferred language for the app interface.",
     "appInfo": "App Info",
     "appInfoDescription": "Information about this application version and build.",
-    "appVersion": "App Version"
+    "appVersion": "Version"
   },
 
   "Theme": {

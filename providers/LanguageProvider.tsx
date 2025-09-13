@@ -1,8 +1,8 @@
 import React, {
   createContext,
   PropsWithChildren,
+  useCallback,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import { TranslateOptions } from "i18n-js";
@@ -37,14 +37,14 @@ export const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   /**
    * @notice We can expose other advanced localization methods from i18n-js here.
    * @example
-   * const n = useMemo(
+   * const n = useCallback(
    *   () => (input: number, options?: Partial<FormatNumberOptions>) =>
    *     i18n.formatNumber(input, options) || input,
    *   [language]
    * );
    */
-  const t = useMemo(
-    () => (key: TranslationKeys, options?: TranslateOptions) =>
+  const t = useCallback(
+    (key: TranslationKeys, options?: TranslateOptions) =>
       i18n.t(key, options) || key,
     [language]
   );

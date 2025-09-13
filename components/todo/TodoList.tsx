@@ -2,17 +2,20 @@ import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { globalStyles } from "@/theme";
 import type { Todo } from "@/utils";
+import { Filter } from "@/services/storage";
 import { NoTodos } from "./NoTodos";
 import { TodoItem } from "./TodoItem";
 
 type TodoListProps = {
   todos: Todo[];
+  filter: Filter;
   onToggleTodo: (_id: string) => void;
   onDeleteTodo: (_id: string) => void;
 };
 
 export const TodoList: React.FC<TodoListProps> = ({
   todos,
+  filter,
   onToggleTodo,
   onDeleteTodo,
 }) => {
@@ -24,7 +27,7 @@ export const TodoList: React.FC<TodoListProps> = ({
       renderItem={({ item }) => (
         <TodoItem item={item} onToggle={onToggleTodo} onDelete={onDeleteTodo} />
       )}
-      ListEmptyComponent={<NoTodos />}
+      ListEmptyComponent={<NoTodos filter={filter} />}
       keyboardShouldPersistTaps="handled"
       scrollEnabled={true}
       showsVerticalScrollIndicator={false}

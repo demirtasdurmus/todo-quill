@@ -20,6 +20,7 @@ export const Todo: React.FC = () => {
   } = useTodoReducer(t);
 
   const remaining = useMemo(() => todos.filter((t) => !t.done).length, [todos]);
+  const done = useMemo(() => todos.filter((t) => t.done).length, [todos]);
   const filtered = useMemo(() => {
     switch (filter) {
       case "active":
@@ -35,11 +36,17 @@ export const Todo: React.FC = () => {
     <>
       <TodoFilters currentFilter={filter} onFilterChange={setFilter} />
 
-      <TodoMeta remainingCount={remaining} onClearDone={handleClearDone} />
+      <TodoMeta
+        remainingCount={remaining}
+        doneCount={done}
+        filter={filter}
+        onClearDone={handleClearDone}
+      />
 
       <TodoInput value={text} onChangeText={setText} onSubmit={handleAddTodo} />
 
       <TodoList
+        filter={filter}
         todos={filtered}
         onToggleTodo={handleToggleDone}
         onDeleteTodo={handleRemoveTodo}

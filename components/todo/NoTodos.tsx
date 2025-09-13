@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useLanguage, useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { Filter } from "@/services/storage";
 
-export const NoTodos: React.FC = () => {
+type NoTodosProps = {
+  filter: Filter;
+};
+
+export const NoTodos: React.FC<NoTodosProps> = ({ filter }) => {
   const { theme } = useTheme();
   const { t } = useLanguage();
+
+  const noTodoMessage = useMemo(() => {
+    if (filter === "all") {
+      return t("Todo.noTodos");
+    } else if (filter === "active") {
+      return t("Todo.noActiveTodos");
+    } else if (filter === "done") {
+      return t("Todo.noDoneTodos");
+    }
+  }, [filter, t]);
+
+  const noTodoDescription = useMemo(() => {
+    if (filter === "done") {
+      return t("Todo.noDoneTodosDescription");
+    }
+    return t("Todo.noTodosDescription");
+  }, [filter, t]);
 
   return (
     <View style={styles.emptyContainer}>
       <Text style={[styles.emptyText, { color: theme.colors.text.secondary }]}>
-        {t("Todo.noTodos")}
+        {noTodoMessage}
       </Text>
       <Text
         style={[styles.emptySubtext, { color: theme.colors.text.secondary }]}
       >
-        {t("Todo.noTodosDescription")}
+        {noTodoDescription}
       </Text>
     </View>
   );
