@@ -8,7 +8,7 @@
   "plugins": ["@ianvs/prettier-plugin-sort-imports"],
   "importOrder": [
     "^react$",
-    "^react-native$",
+    "^react-native*",
     "<BUILTIN_MODULES>",
     "^i18n*",
     "^expo.*",
