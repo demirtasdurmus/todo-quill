@@ -21,7 +21,7 @@ export const Todo: React.FC = () => {
     setText,
     setFilter,
   } = useTodoReducer(t);
-  const [showHint, setShowHint] = useState(false);
+  const [hasSeenHint, setHasSeenHint] = useState(true);
 
   const remaining = useMemo(() => todos.filter((t) => !t.done).length, [todos]);
   const done = useMemo(() => todos.filter((t) => t.done).length, [todos]);
@@ -37,13 +37,13 @@ export const Todo: React.FC = () => {
   }, [todos, filter]);
 
   const dismissHint = useCallback(() => {
-    setShowHint(false);
+    setHasSeenHint(true);
     saveReorderHintSeen();
   }, []);
 
   useEffect(() => {
     loadReorderHintSeen().then((seen) => {
-      if (!seen) setShowHint(true);
+      if (!seen) setHasSeenHint(false);
     });
   }, []);
 
@@ -60,7 +60,9 @@ export const Todo: React.FC = () => {
 
       <TodoInput value={text} onChangeText={setText} onSubmit={handleAddTodo} />
 
-      {showHint && <ReorderHint onDismiss={dismissHint} />}
+      {!hasSeenHint && todos.length > 1 && (
+        <ReorderHint onDismiss={dismissHint} />
+      )}
 
       <DraggableTodoList
         filter={filter}
