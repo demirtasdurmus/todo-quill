@@ -27,7 +27,7 @@
     "noDoneTodos": "No done todos yet",
     "noTodosDescription": "Add your first todo to get started",
     "noDoneTodosDescription": "Check off your first todo to see here",
-    "reorderHint": "Long-press the handle to reorder"
+    "reorderHint": "Long-press and drag and drop to reorder"
   },
 
   "Settings": {

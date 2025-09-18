@@ -27,7 +27,7 @@
     "noDoneTodos": "Henüz tamamlanan görev yok",
     "noTodosDescription": "Başlamak için ilk görevinizi ekleyin",
     "noDoneTodosDescription": "Burada görmek için ilk görevinizi tamamlayın",
-    "reorderHint": "Yeniden sıralamak için basılı tutun"
+    "reorderHint": "Yeniden sıralamak için basılı tutun ve sürükleyip bırakın"
   },
 
   "Settings": {
