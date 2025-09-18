@@ -21,6 +21,7 @@ A modern, feature-rich todo application built with React Native and Expo, featur
 - **🎯 Type Safety**: Full TypeScript support with nested translation keys
 - **🧩 Modular Components**: Reusable UI components with granular architecture
 - **🔧 Code Quality**: ESLint, Prettier, and Husky pre-commit hooks
+- **🎬 Smooth Animations**: Drag-and-drop reordering with React Native Reanimated v4
 
 ## 🚀 Quick Start
 
@@ -268,6 +269,7 @@ const MyComponent = () => {
 - **Complete Todos**: Tap the checkbox or the todo text
 - **Delete Todos**: Tap the ✕ button (with confirmation dialog)
 - **Clear Completed**: Remove all completed todos at once
+- **Drag & Drop**: Long press and drag todos to reorder them
 
 ### Filtering
 
@@ -306,6 +308,10 @@ The app uses Expo SDK 53 with the following key dependencies:
 - **AsyncStorage**: For local data persistence
 - **i18n-js**: For internationalization
 - **expo-localization**: For device language detection
+- **React Native Reanimated**: 4.1.0 (with New Architecture support)
+- **React Native Worklets**: 0.5.1 (for UI thread animations)
+- **React Native Gesture Handler**: 2.28.0 (for drag interactions)
+- **React Native Draggable FlatList**: 4.0.3 (for drag-and-drop functionality)
 
 ### Theme Configuration
 
@@ -379,6 +385,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Storage solution using [@react-native-async-storage/async-storage](https://github.com/react-native-async-storage/async-storage)
 - Internationalization with [i18n-js](https://github.com/fnando/i18n-js)
 - Device localization with [expo-localization](https://docs.expo.dev/versions/latest/sdk/localization/)
+- Smooth animations with [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+- Drag-and-drop functionality with [React Native Draggable FlatList](https://www.npmjs.com/package/react-native-draggable-flatlist)
+- Gesture handling with [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/)
 
 ---
 
