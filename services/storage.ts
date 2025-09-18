@@ -8,6 +8,7 @@ export type ThemeMode = "light" | "dark" | "system";
 const TODO_KEY = "todos:v1";
 const THEME_KEY = "theme:v1";
 const LANGUAGE_KEY = "language:v1";
+const HINT_REORDER_KEY = "hint:reorder:v1";
 
 export const THEME_MODES: ThemeMode[] = ["system", "light", "dark"];
 export const SUPPORTED_LANGUAGES: Language[] = ["en", "tr"];
@@ -89,5 +90,22 @@ export async function saveLanguage(language: Language): Promise<void> {
     await AsyncStorage.setItem(LANGUAGE_KEY, JSON.stringify(language));
   } catch {
     // TODO: Handle save errors
+  }
+}
+
+export async function loadReorderHintSeen(): Promise<boolean> {
+  try {
+    const raw = await AsyncStorage.getItem(HINT_REORDER_KEY);
+    return raw === "1";
+  } catch {
+    return false;
+  }
+}
+
+export async function saveReorderHintSeen(): Promise<void> {
+  try {
+    await AsyncStorage.setItem(HINT_REORDER_KEY, "1");
+  } catch {
+    // ignore
   }
 }

@@ -4,6 +4,7 @@ import DraggableFlatList, {
   RenderItemParams,
   ScaleDecorator,
 } from "react-native-draggable-flatlist";
+import * as Haptics from "expo-haptics";
 import { globalStyles } from "@/theme";
 import type { Todo } from "@/utils";
 import { Filter } from "@/services/storage";
@@ -30,6 +31,9 @@ export const DraggableTodoList: React.FC<DraggableTodoListProps> = ({
       <DraggableFlatList
         data={todos}
         onDragEnd={({ data }) => onReorderTodos(data)}
+        onDragBegin={() =>
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        }
         keyExtractor={(item) => item.id}
         renderItem={({ item, drag }: RenderItemParams<Todo>) => {
           return (

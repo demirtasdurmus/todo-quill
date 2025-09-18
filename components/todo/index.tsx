@@ -1,6 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useLanguage, useTodoReducer } from "@/hooks";
+import { loadReorderHintSeen, saveReorderHintSeen } from "@/services/storage";
 import { DraggableTodoList } from "./DraggableTodoList";
+import { ReorderHint } from "./ReorderHint";
 import { TodoFilters } from "./TodoFilters";
 import { TodoInput } from "./TodoInput";
 import { TodoMeta } from "./TodoMeta";
@@ -19,6 +21,7 @@ export const Todo: React.FC = () => {
     setText,
     setFilter,
   } = useTodoReducer(t);
+  const [showHint, setShowHint] = useState(false);
 
   const remaining = useMemo(() => todos.filter((t) => !t.done).length, [todos]);
   const done = useMemo(() => todos.filter((t) => t.done).length, [todos]);
@@ -33,6 +36,17 @@ export const Todo: React.FC = () => {
     }
   }, [todos, filter]);
 
+  const dismissHint = useCallback(() => {
+    setShowHint(false);
+    saveReorderHintSeen();
+  }, []);
+
+  useEffect(() => {
+    loadReorderHintSeen().then((seen) => {
+      if (!seen) setShowHint(true);
+    });
+  }, []);
+
   return (
     <>
       <TodoFilters currentFilter={filter} onFilterChange={setFilter} />
@@ -45,6 +59,8 @@ export const Todo: React.FC = () => {
       />
 
       <TodoInput value={text} onChangeText={setText} onSubmit={handleAddTodo} />
+
+      {showHint && <ReorderHint onDismiss={dismissHint} />}
 
       <DraggableTodoList
         filter={filter}

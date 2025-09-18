@@ -21,6 +21,7 @@
     "expo-checkbox": "~4.1.4",
     "expo-constants": "~17.1.7",
     "expo-dev-client": "~5.2.4",
+    "expo-haptics": "^15.0.7",
     "expo-linking": "~7.1.7",
     "expo-localization": "~16.1.6",
     "expo-router": "~5.1.5",
