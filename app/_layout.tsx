@@ -1,4 +1,5 @@
 import React from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
 import { useLanguage, useTheme } from "@/hooks";
 import { LanguageProvider, ThemeProvider } from "@/providers";
@@ -21,10 +22,12 @@ const AppContent: React.FC = () => {
 
 export default function RootLayout() {
   return (
-    <LanguageProvider>
-      <ThemeProvider>
-        <AppContent />
-      </ThemeProvider>
-    </LanguageProvider>
+    <GestureHandlerRootView>
+      <LanguageProvider>
+        <ThemeProvider>
+          <AppContent />
+        </ThemeProvider>
+      </LanguageProvider>
+    </GestureHandlerRootView>
   );
 }

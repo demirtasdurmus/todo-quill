@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { useLanguage, useTodoReducer } from "@/hooks";
+import { DraggableTodoList } from "./DraggableTodoList";
 import { TodoFilters } from "./TodoFilters";
 import { TodoInput } from "./TodoInput";
-import { TodoList } from "./TodoList";
 import { TodoMeta } from "./TodoMeta";
 
 export const Todo: React.FC = () => {
@@ -15,6 +15,7 @@ export const Todo: React.FC = () => {
     handleToggleDone,
     handleRemoveTodo,
     handleClearDone,
+    handleReorderTodos,
     setText,
     setFilter,
   } = useTodoReducer(t);
@@ -45,11 +46,12 @@ export const Todo: React.FC = () => {
 
       <TodoInput value={text} onChangeText={setText} onSubmit={handleAddTodo} />
 
-      <TodoList
+      <DraggableTodoList
         filter={filter}
         todos={filtered}
         onToggleTodo={handleToggleDone}
         onDeleteTodo={handleRemoveTodo}
+        onReorderTodos={handleReorderTodos}
       />
     </>
   );

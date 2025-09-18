@@ -22,7 +22,10 @@ export async function loadTodos(): Promise<Todo[]> {
         (t) =>
           typeof t?.id === "string" &&
           typeof t?.title === "string" &&
-          typeof t?.done === "boolean"
+          typeof t?.done === "boolean" &&
+          typeof t?.createdAt === "number" &&
+          // TODO: CLEANUP THIS CHECK IN THE NEXT MAJOR VERSION, THIS IS FOR BACKWARD COMPATIBILITY
+          (t?.order === undefined || typeof t?.order === "number")
       ) as Todo[];
     }
     return [];

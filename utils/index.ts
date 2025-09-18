@@ -7,25 +7,11 @@ export type Todo = {
   title: string;
   done: boolean;
   createdAt: number;
+  // TODO: Optional for backward compatibility, CLEANUP IN THE NEXT MAJOR VERSION
+  order?: number;
 };
 
-/**
- * Create a new todo
- * @param title - The title of the todo
- * @returns The new todo
- * @example
- * const todo = createTodo("Buy groceries");
- * console.log(todo);
- * // { id: "123", title: "Buy groceries", done: false, createdAt: 1714857600000 }
- */
-export function createTodo(title: string): Todo {
-  return {
-    id: Math.random().toString(36).slice(2),
-    title: title.trim(),
-    done: false,
-    createdAt: Date.now(),
-  };
-}
+export type ExpoVectorIcon = keyof typeof Ionicons.glyphMap;
 
 /**
  * Helper type to get all possible nested keys
@@ -41,6 +27,26 @@ export type NestedKeyOf<ObjectType extends object> = {
     ? `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}`
     : `${Key}`;
 }[keyof ObjectType & (string | number)];
+
+/**
+ * Create a new todo
+ * @param title - The title of the todo
+ * @param order - Optional order value (defaults to current timestamp for new todos)
+ * @returns The new todo
+ * @example
+ * const todo = createTodo("Buy groceries");
+ * console.log(todo);
+ * // { id: "123", title: "Buy groceries", done: false, createdAt: 1714857600000, order: 1714857600000 }
+ */
+export function createTodo(title: string, order?: number): Todo {
+  return {
+    id: Math.random().toString(36).slice(2),
+    title: title.trim(),
+    done: false,
+    createdAt: Date.now(),
+    order: order ?? Date.now(), // Computed order or current timestamp
+  };
+}
 
 /**
  * Detect the device language
@@ -62,4 +68,21 @@ export function detectDeviceLanguage(): Language {
   return "en";
 }
 
-export type ExpoVectorIcon = keyof typeof Ionicons.glyphMap;
+/**
+ * Sort todos by order, handling backward compatibility for todos without order
+ * @param todos - Array of todos to sort
+ * @returns Sorted array of todos
+ * @example
+ * const sortedTodos = sortTodosByOrder(todos);
+ */
+export function sortTodosByOrder(todos: Todo[]): Todo[] {
+  return [...todos].sort((a, b) => {
+    /**
+     * Handle backward compatibility: if order is undefined, use createdAt
+     * TODO: CLEANUP IN THE NEXT MAJOR VERSION
+     */
+    const orderA = a?.order ?? a.createdAt;
+    const orderB = b?.order ?? b.createdAt;
+    return orderA - orderB;
+  });
+}

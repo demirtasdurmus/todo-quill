@@ -10,47 +10,57 @@ type TodoItemProps = {
   item: Todo;
   onToggle(_id: string): void;
   onDelete(_id: string): void;
+  onLongPress?: () => void;
 };
 
 export const TodoItem: React.FC<TodoItemProps> = ({
   item,
   onToggle,
   onDelete,
+  onLongPress,
 }) => {
   const { theme } = useTheme();
 
   return (
-    <View
+    <Pressable
       style={[
-        styles.row,
+        styles.container,
         {
           backgroundColor: theme.colors.surface,
           borderColor: theme.colors.border,
         },
       ]}
+      onLongPress={onLongPress}
+      delayLongPress={500}
     >
-      <Checkbox
-        value={item.done}
-        onValueChange={() => onToggle(item.id)}
-        style={styles.checkbox}
-      />
+      <View style={styles.checkContainer}>
+        <Checkbox
+          value={item.done}
+          onValueChange={() => onToggle(item.id)}
+          style={styles.checkbox}
+        />
 
-      <Pressable style={styles.titleWrap} onPress={() => onToggle(item.id)}>
-        <Text
-          style={[
-            styles.title,
-            { color: theme.colors.text.primary },
-            item.done && {
-              ...styles.done,
-              color: theme.colors.text.secondary,
-              textDecorationColor: theme.colors.error,
-            },
-          ]}
-          numberOfLines={2}
+        <Pressable
+          onPress={() => onToggle(item.id)}
+          style={styles.titleWrap}
+          onLongPress={onLongPress}
         >
-          {item.title}
-        </Text>
-      </Pressable>
+          <Text
+            style={[
+              styles.title,
+              { color: theme.colors.text.primary },
+              item.done && {
+                ...styles.done,
+                color: theme.colors.text.secondary,
+                textDecorationColor: theme.colors.error,
+              },
+            ]}
+            numberOfLines={2}
+          >
+            {item.title}
+          </Text>
+        </Pressable>
+      </View>
 
       <Pressable
         hitSlop={8}
@@ -63,19 +73,25 @@ export const TodoItem: React.FC<TodoItemProps> = ({
           color={theme.colors.error}
         />
       </Pressable>
-    </View>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  row: {
+  container: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     padding: globalStyles.spacing.md,
     borderRadius: globalStyles.borderRadius.lg,
     marginBottom: globalStyles.spacing.sm,
     borderWidth: 1,
     ...globalStyles.shadows.sm,
+  },
+  checkContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    maxWidth: "93%",
   },
   checkbox: {
     marginRight: globalStyles.spacing.sm,
@@ -84,9 +100,12 @@ const styles = StyleSheet.create({
   },
   titleWrap: {
     flex: 1,
+    paddingRight: globalStyles.spacing.xs,
   },
   title: {
     fontSize: globalStyles.typography.sizes.base,
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
   done: {
     textDecorationLine: "line-through",

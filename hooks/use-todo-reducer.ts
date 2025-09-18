@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react";
 import { Alert } from "react-native";
 import { TranslationFunction } from "@/i18n";
-import { createTodo, Todo } from "@/utils";
+import { createTodo, sortTodosByOrder, Todo } from "@/utils";
 import { Filter, loadTodos, saveTodos } from "@/services/storage";
 
 type TodoState = {
@@ -17,7 +17,8 @@ type TodoAction =
   | { type: "DELETE_TODO"; payload: string }
   | { type: "CLEAR_DONE" }
   | { type: "SET_FILTER"; payload: Filter }
-  | { type: "LOAD_TODOS"; payload: Todo[] };
+  | { type: "LOAD_TODOS"; payload: Todo[] }
+  | { type: "REORDER_TODOS"; payload: Todo[] };
 
 const initialState: TodoState = {
   todos: [],
@@ -70,6 +71,10 @@ export const useTodoReducer = (t: TranslationFunction) => {
     ]);
   };
 
+  const handleReorderTodos = (reorderedTodos: Todo[]) => {
+    dispatch({ type: "REORDER_TODOS", payload: reorderedTodos });
+  };
+
   useEffect(() => {
     (async () => {
       const loadedTodos = await loadTodos();
@@ -89,6 +94,7 @@ export const useTodoReducer = (t: TranslationFunction) => {
     handleToggleDone,
     handleRemoveTodo,
     handleClearDone,
+    handleReorderTodos,
     setText,
     setFilter,
   };
@@ -136,11 +142,23 @@ function todoReducer(state: TodoState, action: TodoAction): TodoState {
         filter: action.payload,
       };
 
-    case "LOAD_TODOS":
+    case "LOAD_TODOS": {
       return {
         ...state,
-        todos: action.payload,
+        todos: sortTodosByOrder(action.payload),
       };
+    }
+
+    case "REORDER_TODOS": {
+      const reorderedTodos = action.payload.map((todo, index) => ({
+        ...todo,
+        order: Date.now() + index,
+      }));
+      return {
+        ...state,
+        todos: reorderedTodos,
+      };
+    }
 
     default:
       return state;
