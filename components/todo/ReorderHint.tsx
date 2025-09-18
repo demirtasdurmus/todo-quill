@@ -18,8 +18,8 @@ export const ReorderHint: React.FC<ReorderHintProps> = ({ onDismiss }) => {
       style={[
         styles.container,
         {
-          backgroundColor: theme.colors.surface,
-          borderColor: theme.colors.border,
+          backgroundColor: theme.colors.info,
+          borderColor: theme.colors.success,
         },
       ]}
     >
@@ -37,7 +37,7 @@ export const ReorderHint: React.FC<ReorderHintProps> = ({ onDismiss }) => {
       <Text>
         <Ionicons
           name="close"
-          size={globalStyles.typography.sizes.base}
+          size={globalStyles.typography.sizes.xl}
           color={theme.colors.text.secondary}
         />
       </Text>
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     ...globalStyles.shadows.sm,
   },
   text: {
+    maxWidth: "95%",
     fontSize: globalStyles.typography.sizes.sm,
   },
 });

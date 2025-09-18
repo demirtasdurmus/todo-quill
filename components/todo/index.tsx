@@ -36,6 +36,10 @@ export const Todo: React.FC = () => {
     }
   }, [todos, filter]);
 
+  const shouldDisplayHint = useMemo(() => {
+    return !hasSeenHint && todos.length > 1 && filter !== "done";
+  }, [hasSeenHint, todos, filter]);
+
   const dismissHint = useCallback(() => {
     setHasSeenHint(true);
     saveReorderHintSeen();
@@ -60,9 +64,7 @@ export const Todo: React.FC = () => {
 
       <TodoInput value={text} onChangeText={setText} onSubmit={handleAddTodo} />
 
-      {!hasSeenHint && todos.length > 1 && (
-        <ReorderHint onDismiss={dismissHint} />
-      )}
+      {shouldDisplayHint && <ReorderHint onDismiss={dismissHint} />}
 
       <DraggableTodoList
         filter={filter}

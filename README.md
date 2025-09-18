@@ -92,11 +92,38 @@ border: "#e5e7eb"      // Borders and dividers
 text.primary: "#111827"    // Main text
 text.secondary: "#6b7280"  // Secondary text
 text.inverse: "#ffffff"    // Text on colored backgrounds
+text.info: "#047857"       // Info text (light theme)
 
 // Feedback colors
 success: "#22c55e"     // Success states
 error: "#ef4444"       // Error states
 warning: "#f59e0b"     // Warning states
+info: "#E8F8EF"        // Info states (light theme)
+```
+
+**Dark Theme Colors:**
+
+```typescript
+// Brand colors
+primary: "#60a5fa"     // Main brand color (lighter)
+secondary: "#9ca3af"   // Secondary brand color (lighter)
+
+// UI colors
+background: "#111827"  // App background (dark)
+surface: "#1f2937"     // Card/input backgrounds (dark)
+border: "#374151"      // Borders and dividers (dark)
+
+// Text colors
+text.primary: "#f9fafb"    // Main text (light)
+text.secondary: "#d1d5db"  // Secondary text (light)
+text.inverse: "#111827"    // Text on colored backgrounds (dark)
+text.info: "#A7F3D0"       // Info text (dark theme)
+
+// Feedback colors
+success: "#4ade80"     // Success states (lighter)
+error: "#f87171"       // Error states (lighter)
+warning: "#fbbf24"     // Warning states (lighter)
+info: "#064E3B"        // Info states (dark theme)
 ```
 
 ### Typography Scale
