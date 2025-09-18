@@ -7,9 +7,7 @@ import React, {
 } from "react";
 import { useColorScheme } from "react-native";
 import { globalStyles } from "@/theme";
-import { loadThemeMode, saveThemeMode } from "@/services/storage";
-
-export type ThemeMode = "light" | "dark" | "system";
+import { loadThemeMode, saveThemeMode, ThemeMode } from "@/services/storage";
 
 export type Theme = {
   colors: typeof globalStyles.colors.light | typeof globalStyles.colors.dark;

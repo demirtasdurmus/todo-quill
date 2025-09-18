@@ -35,7 +35,7 @@
     "themeDescription": "Automatic is only supported on operating systems that allow you to control the system-wide color scheme.",
     "languageDescription": "Choose your preferred language for the app interface.",
     "appInfo": "App Info",
-    "appInfoDescription": "Information about this application version and build.",
+    "appInfoDescription": "Information about this application version",
     "appVersion": "Version"
   },
 

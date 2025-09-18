@@ -1,15 +1,15 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { ExpoVectorIcon } from "@/utils";
 import { OptionItem } from "./OptionItem";
 
 export type OptionListProps<T> = {
   options: Array<{
     value: T;
     label: string;
-    icon: keyof typeof Ionicons.glyphMap;
+    icon: ExpoVectorIcon;
   }>;
   selectedValue: T;
   onSelect: (_value: T) => void;

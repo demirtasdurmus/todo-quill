@@ -18,7 +18,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({
   const { t } = useLanguage();
   const inputRef = useRef<TextInput>(null);
 
-  const onSubmitWithFocus = () => {
+  const onSubmitWithFocusBack = () => {
     onSubmit();
     setTimeout(() => {
       inputRef.current?.focus();
@@ -42,7 +42,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({
         placeholder={t("Todo.addTodo")}
         placeholderTextColor={theme.colors.text.secondary}
         returnKeyType="done"
-        onSubmitEditing={onSubmitWithFocus}
+        onSubmitEditing={onSubmitWithFocusBack}
         style={[styles.input, { color: theme.colors.text.primary }]}
       />
     </View>

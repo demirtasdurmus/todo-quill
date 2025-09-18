@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
 import { useLanguage, useTheme } from "@/hooks";
-import { ThemeMode } from "@/providers";
 import { ExpoVectorIcon } from "@/utils";
-import { THEME_MODES } from "@/services/storage";
+import { THEME_MODES, ThemeMode } from "@/services/storage";
 import { OptionList } from "./OptionList";
 import { SettingsSection } from "./SettingsSection";
 

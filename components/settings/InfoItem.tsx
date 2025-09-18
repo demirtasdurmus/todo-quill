@@ -3,11 +3,12 @@ import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { ExpoVectorIcon } from "@/utils";
 
 type InfoItemProps = {
   label: string;
   value: string;
-  icon?: keyof typeof Ionicons.glyphMap;
+  icon?: ExpoVectorIcon;
   isLast?: boolean;
 };
 
@@ -30,7 +31,11 @@ export const InfoItem: React.FC<InfoItemProps> = ({
       <View style={styles.content}>
         {icon && (
           <View style={styles.icon}>
-            <Ionicons name={icon} size={20} color={theme.colors.text.primary} />
+            <Ionicons
+              name={icon}
+              size={globalStyles.typography.sizes.xl}
+              color={theme.colors.text.primary}
+            />
           </View>
         )}
         <Text style={[styles.labelText, { color: theme.colors.text.primary }]}>

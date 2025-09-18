@@ -1,15 +1,15 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { ExpoVectorIcon } from "@/utils";
 import { InfoItem } from "./InfoItem";
 
 export type InfoListProps = {
   items: Array<{
     label: string;
     value: string;
-    icon?: keyof typeof Ionicons.glyphMap;
+    icon?: ExpoVectorIcon;
   }>;
 };
 

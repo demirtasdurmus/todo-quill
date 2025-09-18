@@ -3,12 +3,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks";
 import { globalStyles } from "@/theme";
+import { ExpoVectorIcon } from "@/utils";
 import { RadioButton } from "@/components/ui/RadioButton";
 
 export type OptionItemProps<T> = {
   value: T;
   label: string;
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: ExpoVectorIcon;
   selected: boolean;
   onSelect: (_value: T) => void;
   isLast?: boolean;
@@ -35,7 +36,11 @@ export const OptionItem = <T,>({
     >
       <View style={styles.optionContent}>
         <View style={styles.optionIcon}>
-          <Ionicons name={icon} size={20} color={theme.colors.text.primary} />
+          <Ionicons
+            name={icon}
+            size={globalStyles.typography.sizes.xl}
+            color={theme.colors.text.primary}
+          />
         </View>
         <Text style={[styles.optionText, { color: theme.colors.text.primary }]}>
           {label}
