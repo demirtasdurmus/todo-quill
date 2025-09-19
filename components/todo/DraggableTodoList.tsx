@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    paddingTop: globalStyles.spacing.sm,
+    paddingVertical: globalStyles.spacing.sm,
   },
 });
