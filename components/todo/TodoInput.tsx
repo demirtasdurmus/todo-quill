@@ -20,9 +20,14 @@ export const TodoInput: React.FC<TodoInputProps> = ({
 
   const onSubmitWithFocusBack = () => {
     onSubmit();
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 50);
+    /**
+     * Focus back to the input only if the value is not empty
+     */
+    if (value.trim()) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 50);
+    }
   };
 
   return (
