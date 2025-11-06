@@ -1,30 +1,24 @@
 import React, { PropsWithChildren } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-} from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@/hooks";
 
 export const SafeAreaLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const { theme } = useTheme();
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    >
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        style={styles.keyboardAvoidingView}
+    <SafeAreaProvider>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: theme.colors.background }]}
       >
-        {children}
-      </KeyboardAvoidingView>
-      <StatusBar
-        style={theme.colors.background === "#f9fafb" ? "dark" : "light"}
-      />
-    </SafeAreaView>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+          style={styles.keyboardAvoidingView}
+        >
+          {children}
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
