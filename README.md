@@ -418,4 +418,37 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 📱 Download the App
+
+Experience Todo Quill on your mobile device! Download the app from your preferred app store and start organizing your tasks with simplicity and elegance.
+
+<!-- markdownlint-disable MD033 -->
+<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://apps.apple.com/us/app/todo-quill/id6751898106">
+        <img src="./docs/app-store-qr-code.png" alt="App Store QR Code" width="200" />
+        <p>📱 Get it on App Store</p>
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://play.google.com/store/apps/details?id=com.demirtasdurmus.todoquill">
+        <img src="./docs/play-store-qr-code.png" alt="Google Play Store QR Code" width="200" />
+        <p>📱 Get it on Google Play</p>
+      </a>
+    </td>
+  </tr>
+</table>
+<!-- markdownlint-enable MD033 -->
+
+**Quick Download Options:**
+
+- **📱 Scan the QR code** with your phone's camera to instantly open the app store
+- **🔗 Click the QR code or link** to visit the store page directly
+- **🌐 Direct links:**
+  - [App Store](https://apps.apple.com/us/app/todo-quill/id6751898106) - Available for iPhone, iPad, and Mac
+  - [Google Play](https://play.google.com/store/apps/details?id=com.demirtasdurmus.todoquill) - Available for Android devices
+
+---
+
 Made with ❤️ using React Native and Expo
