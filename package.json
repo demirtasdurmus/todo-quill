@@ -12,6 +12,8 @@
     "prebuild": "expo prebuild --clean",
     "prebuild:ios": "expo prebuild --platform ios --clean",
     "prebuild:android": "expo prebuild --platform android --clean",
+    "start": "expo start",
+    "web": "expo start --web",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
